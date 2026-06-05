@@ -6,4 +6,3 @@
 *flask_log.txt*
 *flask_err.txt*
 **/.env
-**/config.py
