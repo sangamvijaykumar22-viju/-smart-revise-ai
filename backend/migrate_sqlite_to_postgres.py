@@ -12,9 +12,9 @@ if parent_dir not in sys.path:
     sys.path.insert(0, parent_dir)
 
 from flask import Flask
-from app import create_app
-from extensions import db
-from models import User, Revision, Planner, Chat, Message
+from backend.app import create_app
+from backend.extensions import db
+from backend.models import User, Revision, Planner, Chat, Message
 
 def migrate():
     # Ensure we get the destination DATABASE_URL
