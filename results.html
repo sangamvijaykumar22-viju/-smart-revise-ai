@@ -602,7 +602,7 @@
                 }
 
                 try {
-                    const response = await fetch("http://127.0.0.1:5050/api/revision/generate", {
+                    const response = await fetch(getApiUrl("/api/revision/generate"), {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -957,7 +957,7 @@
                     
                     // Sync with cloud if saved
                     if (data.id) {
-                        fetch(`http://127.0.0.1:5050/api/revision/${data.id}`, {
+                        fetch(getApiUrl(`/api/revision/${data.id}`), {
                             method: 'PATCH',
                             headers: {
                                 "Content-Type": "application/json",
@@ -1295,7 +1295,7 @@
                     // Sync with cloud if saved
                     if (data.id) {
                         const pg = Math.round((completedIndices.length / aiContent.roadmap.length) * 100);
-                        fetch(`http://127.0.0.1:5050/api/revision/${data.id}`, {
+                        fetch(getApiUrl(`/api/revision/${data.id}`), {
                             method: 'PATCH',
                             headers: {
                                 "Content-Type": "application/json",
@@ -1344,7 +1344,7 @@
                 }
 
                 try {
-                    const response = await fetch("http://127.0.0.1:5050/api/revision/generate", {
+                    const response = await fetch(getApiUrl("/api/revision/generate"), {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -1398,7 +1398,7 @@
                         const totalRoadmap = (aiContent.roadmap || []).length;
                         const progressPct = totalRoadmap > 0 ? Math.round((roadmapChecks.length / totalRoadmap) * 100) : 0;
 
-                        const response = await fetch("http://127.0.0.1:5050/api/revision/save", {
+                        const response = await fetch(getApiUrl("/api/revision/save"), {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",

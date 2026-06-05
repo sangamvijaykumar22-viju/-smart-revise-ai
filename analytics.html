@@ -171,10 +171,10 @@
             if (!userId || !token) return null;
             try {
                 const [revisionsResp, plannerResp] = await Promise.all([
-                    fetch(`http://127.0.0.1:5050/api/revision/user/${userId}`, {
+                    fetch(getApiUrl(`/api/revision/user/${userId}`), {
                         headers: { "Authorization": `Bearer ${token}` }
                     }),
-                    fetch(`http://127.0.0.1:5050/api/planner/${userId}`, {
+                    fetch(getApiUrl(`/api/planner/${userId}`), {
                         headers: { "Authorization": `Bearer ${token}` }
                     })
                 ]);
