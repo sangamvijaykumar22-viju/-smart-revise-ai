@@ -3,7 +3,7 @@
  * Stores JWT tokens and user data from the Flask backend.
  */
 
-const API_BASE_URL = "http://127.0.0.1:5050/api/auth";
+const API_BASE_URL = "(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5050' : 'https://smart-revise-ai-m3u6.onrender.com') + "/api/auth";
 
 const Auth = {
     // Get current logged in user from localStorage
@@ -59,7 +59,7 @@ const Auth = {
     // Check if email exists and send token
     async checkEmail(email) {
         try {
-            const response = await fetch(`http://127.0.0.1:5050/api/auth/forgot-password`, {
+            const response = await fetch(`(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5050' : 'https://smart-revise-ai-m3u6.onrender.com') + `/api/auth/forgot-password`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email })
@@ -74,7 +74,7 @@ const Auth = {
     // Reset password with token
     async resetPassword(email, token, newPassword) {
         try {
-            const response = await fetch(`http://127.0.0.1:5050/api/auth/reset-password`, {
+            const response = await fetch(`(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5050' : 'https://smart-revise-ai-m3u6.onrender.com') + `/api/auth/reset-password`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, token, new_password: newPassword })

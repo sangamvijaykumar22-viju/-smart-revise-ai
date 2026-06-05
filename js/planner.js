@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- API & RENDERING ---
     const fetchTasks = async () => {
         try {
-            const resp = await fetch(`http://127.0.0.1:5050/api/planner/${userId}?date=${selectedDate}`, {
+            const resp = await fetch(`(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5050' : 'https://smart-revise-ai-m3u6.onrender.com') + `/api/planner/${userId}?date=${selectedDate}`, {
                 headers: { "Authorization": `Bearer ${token}` }
             });
 
@@ -360,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.toggleTask = async (id) => {
         try {
-            const resp = await fetch(`http://127.0.0.1:5050/api/planner/${id}/toggle`, {
+            const resp = await fetch(`(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5050' : 'https://smart-revise-ai-m3u6.onrender.com') + `/api/planner/${id}/toggle`, {
                 method: "PATCH",
                 headers: { "Authorization": `Bearer ${token}` }
             });
@@ -371,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.deleteTask = async (id) => {
         if (!confirm("Remove this session?")) return;
         try {
-            const resp = await fetch(`http://127.0.0.1:5050/api/planner/${id}`, {
+            const resp = await fetch(`(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5050' : 'https://smart-revise-ai-m3u6.onrender.com') + `/api/planner/${id}`, {
                 method: "DELETE",
                 headers: { "Authorization": `Bearer ${token}` }
             });
@@ -422,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 description: `Focus session for ${selectedTitle}`
             };
 
-            const resp = await fetch("http://127.0.0.1:5050/api/planner/add", {
+            const resp = await fetch("(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5050' : 'https://smart-revise-ai-m3u6.onrender.com') + "/api/planner/add", {
                 method: "POST",
                 headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
                 body: JSON.stringify({ ...data, user_id: userId })

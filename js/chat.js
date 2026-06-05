@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!token) return [];
 
         try {
-            const response = await fetch('http://127.0.0.1:5050/api/chat/list', {
+            const response = await fetch('(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5050' : 'https://smart-revise-ai-m3u6.onrender.com') + '/api/chat/list', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             return response.ok ? await response.json() : [];
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!token) return;
 
         try {
-            const response = await fetch(`http://127.0.0.1:5050/api/chat/${chatId}`, {
+            const response = await fetch(`(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5050' : 'https://smart-revise-ai-m3u6.onrender.com') + `/api/chat/${chatId}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (currentChatId) body.append('chat_id', currentChatId);
                 body.append('file', file);
 
-                const response = await fetch('http://127.0.0.1:5050/api/chat/message', {
+                const response = await fetch('(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5050' : 'https://smart-revise-ai-m3u6.onrender.com') + '/api/chat/message', {
                     method: 'POST',
                     headers: { 'Authorization': `Bearer ${token}` },
                     body: body,
@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Stream Text-only messages
-            const response = await fetch('http://127.0.0.1:5050/api/chat/message/stream', {
+            const response = await fetch('(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5050' : 'https://smart-revise-ai-m3u6.onrender.com') + '/api/chat/message/stream', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -446,7 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!token) return;
 
         try {
-            const response = await fetch(`http://127.0.0.1:5050/api/chat/${chatId}`, {
+            const response = await fetch(`(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5050' : 'https://smart-revise-ai-m3u6.onrender.com') + `/api/chat/${chatId}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` }
             });

@@ -3,7 +3,7 @@
  * Handles authentication, data fetching, charts, and user management.
  */
 
-const API_BASE = 'http://127.0.0.1:5050/api';
+const API_BASE = '(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5050' : 'https://smart-revise-ai-m3u6.onrender.com') + '/api';
 let currentUsersPage = 1;
 let currentRevisionsPage = 1;
 let currentUserSearch = '';   // global so pagination buttons can reference it
