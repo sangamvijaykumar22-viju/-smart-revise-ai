@@ -446,7 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!token || !userId || alertShowing || !sessionValid) return;
         try {
             const todayISO = new Date().toISOString().split('T')[0];
-            const resp = await fetch(`(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5050' : 'https://smart-revise-ai-m3u6.onrender.com') + `/api/planner/${userId}?date=${todayISO}`, {
+            const resp = await fetch((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5050' : 'https://smart-revise-ai-m3u6.onrender.com') + `/api/planner/${userId}?date=${todayISO}`, {
                 headers: { "Authorization": `Bearer ${token}` }
             });
 
@@ -563,7 +563,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (nudgeShown) return;
 
         try {
-            const resp = await fetch(`(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5050' : 'https://smart-revise-ai-m3u6.onrender.com') + `/api/revision/user/${userId}`, {
+            const resp = await fetch((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5050' : 'https://smart-revise-ai-m3u6.onrender.com') + `/api/revision/user/${userId}`, {
                 headers: { "Authorization": `Bearer ${token}` }
             });
 

@@ -422,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 description: `Focus session for ${selectedTitle}`
             };
 
-            const resp = await fetch("(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5050' : 'https://smart-revise-ai-m3u6.onrender.com') + "/api/planner/add", {
+            const resp = await fetch((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5050' : 'https://smart-revise-ai-m3u6.onrender.com') + "/api/planner/add", {
                 method: "POST",
                 headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
                 body: JSON.stringify({ ...data, user_id: userId })

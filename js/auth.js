@@ -3,7 +3,7 @@
  * Stores JWT tokens and user data from the Flask backend.
  */
 
-const API_BASE_URL = "(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5050' : 'https://smart-revise-ai-m3u6.onrender.com') + "/api/auth";
+const API_BASE_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://127.0.0.1:5050' : 'https://smart-revise-ai-m3u6.onrender.com') + "/api/auth";
 
 const Auth = {
     // Get current logged in user from localStorage
