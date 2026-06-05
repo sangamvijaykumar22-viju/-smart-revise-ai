@@ -1,0 +1,149 @@
+# SMART REVISE PROJECT REPORT
+
+## CHAPTER-1: INTRODUCTION
+### 1.1 Purpose of the project
+The Smart Revise project aims to revolutionize the way students and learners prepare for their exams and daily lessons. By integrating Artificial Intelligence (AI) and Internet of Things (IoT) technologies, the system provides a personalized, interactive, and efficient learning environment. The core goal is to automate the generation of revision notes, track user progress, and maintain learning consistency through features like "Daily Streaks" and "Personalized Planners."
+
+### 1.2 Problem with Existing Systems
+- **Static Content**: Most existing revision platforms offer static, pre-defined notes that don't adapt to individual learning speeds.
+- **Lack of Tracking**: Traditional methods often fail to track progress effectively over time, leading to inconsistent study habits.
+- **No Hardware Integration**: Modern learning systems are often confined to screen-only interactions, lacking ambient physical reminders or interactive hardware.
+- **Disconnected Tools**: Users often have to use separate apps for notes, planning, and chatting, leading to a fragmented experience.
+
+### 1.3 Proposed System
+The proposed "Smart Revise" system is a centralized hub for learning. It features:
+- **AI-Powered Notes**: Uses Large Language Models (LLMs) to generate high-quality revision content on any topic.
+- **Smart Planner**: An integrated task manager that helps users schedule their study sessions.
+- **Interactive Chatbot**: A dedicated assistant to clarify doubts in real-time.
+- **IoT Integration**: Uses Raspberry Pi for hardware-level notifications and physical interaction cues.
+- **Progress Analytics**: Visualizes user performance and study streaks to boost motivation.
+
+### 1.4 Scope of the Project
+The project covers:
+- User authentication and profile management.
+- Backend API development using Flask.
+- Frontend responsive design using Vanilla JS and CSS.
+- Database management for storing user data, tasks, and revision history.
+- Integration of Raspberry Pi for ambient notifications.
+
+### 1.5 Architecture Diagram
+```mermaid
+graph TD
+    User((User)) --> WebUI[Web Frontend]
+    WebUI --> FlaskAPI[Flask Backend API]
+    FlaskAPI --> DB[(SQLite Database)]
+    FlaskAPI --> AI[AI Engine - LLM]
+    FlaskAPI --> RPi[Raspberry Pi Hardware]
+    RPi --> LED[Status Indicators/OLED]
+```
+
+---
+
+## CHAPTER-2: LITERATURE SURVEY
+Current research in EdTech highlights the importance of "Active Recall" and "Spaced Repetition." Platforms like Anki and Quizlet have set the foundation for digital learning, but they often require significant manual effort from the user. Recent advances in Generative AI (GPT/Llama) allow for automated content creation, which is the cornerstone of Smart Revise. IoT integration in classrooms has also shown increased engagement, justifying the use of Raspberry Pi in this project.
+
+---
+
+## CHAPTER-3: SOFTWARE REQUIREMENT SPECIFICATION (SRS)
+### 3.1 Introduction to SRS
+This SRS document outlines the functional and non-functional requirements of the Smart Revise system.
+
+### 3.4 Functional Requirements
+- **FR1**: System shall allow users to register and login securely.
+- **FR2**: System shall generate revision notes based on user-provided topics.
+- **FR3**: System shall allow users to create, update, and delete study tasks.
+- **FR4**: System shall maintain a 'streak' count for daily logins.
+- **FR5**: System shall store and retrieve chat histories with the AI assistant.
+
+### 3.5 Non-Functional Requirements
+- **Performance**: API responses should be under 2 seconds.
+- **Security**: All passwords must be hashed using Bcrypt.
+- **Usability**: The UI should be responsive and work on mobile/desktop.
+
+### 3.7 Software Requirements
+- **Language**: Python 3.x, JavaScript (ES6+), HTML5, CSS3.
+- **Framework**: Flask (Python).
+- **Database**: SQLite (SQLAlchemy ORM).
+- **Security**: Flask-Bcrypt, Flask-JWT.
+
+### 3.8 Hardware Requirements
+- **Microcontroller**: Raspberry Pi 4 Model B.
+- **Storage**: 32GB MicroSD Card.
+- **Display**: 16x2 LCD or OLED Display (for RPi status).
+- **Peripherals**: Jumper wires, LEDs, and breadboard.
+
+---
+
+## CHAPTER-4: SYSTEM DESIGN
+### 4.1 Introduction to UML
+Unified Modeling Language is used to represent the system architecture and data flow.
+
+### 4.2 UML Diagrams
+#### 4.2.1 Use Case Diagram
+- **Actors**: User, Admin, AI Engine.
+- **Use Cases**: Register, Generate Notes, Manage Schedule, Chat with Assistant, View Analytics.
+
+#### 4.2.2 Sequence Diagram
+1. User requests a topic.
+2. Frontend sends request to Flask.
+3. Flask queries AI Engine.
+4. AI Engine returns notes.
+5. Flask saves notes to DB and sends to Frontend.
+
+### 4.3 TECHNOLOGIES USED
+- **Backend**: Flask (Lightweight and flexible).
+- **ORM**: SQLAlchemy (For database abstraction).
+- **Frontend**: Vanilla CSS and JS (For maximum control and performance).
+- **Hardware Interface**: GPIO (General Purpose Input/Output) on Raspberry Pi.
+
+---
+
+## CHAPTER-5: IMPLEMENTATION
+### 5.1 Setting up connections with Raspberry PI
+The Raspberry Pi is configured with a headless setup. GPIO pins are used to trigger LEDs when a user completes a task on the web dashboard.
+- **Library used**: `RPi.GPIO` or `gpiozero`.
+
+### 5.2 Coding the logic
+The backend uses a modular approach with blueprints:
+- `auth.py`: Handles JWT and login logic.
+- `revision.py`: Manages AI content generation.
+- `planner.py`: Handles CRUD operations for tasks.
+
+### 5.3 Connecting the dashboard
+The dashboard uses `fetch` API to retrieve real-time data from the Flask server and dynamically updates the DOM.
+
+### 5.4 Screenshots
+*(Place actual screenshots of index.html, dashboard.html, and planner.html here)*
+
+---
+
+## CHAPTER-6: SOFTWARE TESTING
+### 6.1.1 Testing Objectives
+To ensure all features work correctly and the system is resilient to invalid inputs.
+
+### 6.1.2 Testing Strategies
+- **Unit Testing**: Testing individual Flask routes and model methods.
+- **Integration Testing**: Ensuring the Frontend correctly communicates with the Backend.
+- **User Acceptance Testing (UAT)**: Validating the system against user requirements.
+
+### 6.2 Test Cases
+| ID | Test Case | Expected Result | Result |
+|----|-----------|-----------------|--------|
+| TC1 | Valid Login | User redirected to Dashboard | Pass |
+| TC2 | Generate Notes | AI returns relevant content | Pass |
+| TC3 | Create Task | Task appears in Planner list | Pass |
+
+---
+
+## CONCLUSION
+The Smart Revise project successfully demonstrates the synergy between software AI and hardware IoT. It provides a cohesive platform for modern learners.
+
+## FUTURE ENHANCEMENTS
+- Integration with Google Calendar.
+- Voice-activated revision notes.
+- Mobile application using React Native.
+
+## BIBLIOGRAPHY
+- "Flask Web Development" by Miguel Grinberg.
+- "Raspberry Pi User Guide" by Eben Upton.
+- "Artificial Intelligence: A Modern Approach" by Stuart Russell.

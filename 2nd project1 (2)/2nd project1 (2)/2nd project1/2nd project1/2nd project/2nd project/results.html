@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Revision Results | SmartRevise AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.rawgit.com/skulpt/skulpt-dist/master/skulpt.min.js" type="text/javascript"></script>
+    <script src="https://cdn.rawgit.com/skulpt/skulpt-dist/master/skulpt-stdlib.js" type="text/javascript"></script>
+    <style>
+        /* Coding Practice Enhanced Styles */
+        .practice-question-card {
+            border-left: 4px solid var(--bs-primary);
+            transition: transform 0.2s;
+        }
+
+        .practice-question-card:hover {
+            transform: translateX(5px);
+        }
+
+        .editor-container {
+            background: #1e1e1e;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+
+        .editor-header {
+            background: #252526;
+            padding: 8px 16px;
+            border-bottom: 1px solid #333;
+        }
+
+        .editor-main {
+            display: flex;
+            min-height: 300px;
+        }
+
+        .line-numbers {
+            width: 40px;
+            background: #1e1e1e;
+            color: #858585;
+            padding: 10px 0;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            border-right: 1px solid #333;
+            user-select: none;
+        }
+
+        .code-textarea {
+            flex: 1;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            border: none;
+            padding: 10px;
+            resize: none;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            outline: none;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        .console-container {
+            background: #000;
+            color: #00ff00;
+            border-radius: 0 0 12px 12px;
+            padding: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            min-height: 100px;
+            border: 1px solid #333;
+            border-top: none;
+        }
+
+        .console-header {
+            color: #858585;
+            font-size: 11px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .5;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+    <!-- GLOBAL LOADING OVERLAY -->
+    <div id="loading-overlay" class="d-none"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 10000; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+        <div class="spinner-border text-primary mb-3" style="width: 3rem; height: 3rem;" role="status"></div>
+        <h4 class="fw-bold animate-pulse">SmartRevise AI is mastering <span id="loading-topic">topic</span>...</h4>
+        <p class="text-muted" id="loading-tip">Generating your personalized revision content</p>
+        <script>
+            const tips = [
+                "Drafting structured notes...",
+                "Preparing practice MCQs...",
+                "Building coding challenges...",
+                "Creating your learning roadmap...",
+                "Optimizing for your difficulty level..."
+            ];
+            let tipIdx = 0;
+            setInterval(() => {
+                const tipEl = document.getElementById('loading-tip');
+                if (tipEl) {
+                    tipEl.style.opacity = 0;
+                    setTimeout(() => {
+                        tipEl.textContent = tips[tipIdx % tips.length];
+                        tipEl.style.opacity = 1;
+                        tipIdx++;
+                    }, 500);
+                }
+            }, 2500);
+        </script>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm py-2">
+        <div class="container-fluid px-lg-5">
+            <a class="navbar-brand d-flex align-items-center me-4" href="index.html">
+                <i class="bi bi-robot text-primary me-2 h3 mb-0"></i>
+                <span class="text-dark fw-800 fs-4">SmartRevise</span><span class="text-primary fw-800 fs-4">AI</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto align-items-center">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link px-3 dropdown-toggle text-dark fw-600" href="#" role="button"
+                            data-bs-toggle="dropdown">Courses</a>
+                        <ul class="dropdown-menu border-0 shadow-sm">
+                            <li><a class="dropdown-item" href="#">C</a></li>
+                            <li><a class="dropdown-item" href="#">Python</a></li>
+                            <li><a class="dropdown-item" href="#">Java</a></li>
+                            <li><a class="dropdown-item" href="#">C++</a></li>
+                            <li><a class="dropdown-item" href="#">DBMS</a></li>
+                            <li><a class="dropdown-item" href="#">DSA</a></li>
+                            <li><a class="dropdown-item" href="#">HTML</a></li>
+                            <li><a class="dropdown-item" href="#">JavaScript</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link px-3 dropdown-toggle text-dark fw-600" href="#" role="button"
+                            data-bs-toggle="dropdown">Practice</a>
+                        <ul class="dropdown-menu border-0 shadow-sm">
+                            <li><a class="dropdown-item" href="#" onclick="quickStartRevision('Arrays')">Arrays</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="quickStartRevision('HashMap')">HashMap</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#"
+                                    onclick="quickStartRevision('LinkedList')">LinkedList</a></li>
+                            <li><a class="dropdown-item" href="#"
+                                    onclick="quickStartRevision('Basic Programming Language Topics')">Basic Programming
+                                    Language Topics</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="quickStartRevision('OOPs')">OOPs</a></li>
+                            <li><a class="dropdown-item" href="#"
+                                    onclick="quickStartRevision('Advanced Language Topics')">Advanced Language
+                                    Topics</a></li>
+                            <li><a class="dropdown-item" href="#"
+                                    onclick="quickStartRevision('Trees & Binary Search Trees')">Trees & Binary Search Trees</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 fw-600 text-dark" href="dashboard.html">
+                            <i class="bi bi-speedometer2 me-1"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 fw-600 text-dark" href="planner.html">Planner</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 fw-600 text-dark" href="saved-revisions.html">Saved</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 fw-600 text-dark" href="analytics.html">Analytics</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link px-3 fw-600 text-dark" href="upload.html">Upload PDF</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn btn-link text-dark p-0" id="theme-toggle">
+                        <i class="bi bi-moon fs-5" id="theme-icon"></i>
+                    </button>
+                    <button class="btn btn-link text-dark p-0 position-relative" title="Notifications">
+                        <i class="bi bi-bell fs-5"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-danger p-1 notification-badge d-none">
+                            <span class="visually-hidden">unread notifications</span>
+                        </span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container" style="margin-top: 100px; margin-bottom: 60px;">
+        <div class="row">
+            <!-- Left Side: Main Content -->
+            <div class="col-lg-8">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h2 class="fw-bold mb-1">Python: <span class="text-primary">DSA</span></h2>
+                        <p class="text-muted small mb-0"><i class="bi bi-clock me-1"></i> Generated 2 minutes ago</p>
+                    </div>
+                    <div>
+                        <button id="save-revision" class="btn btn-outline-primary btn-sm rounded-pill px-3 me-2">
+                            <i class="bi bi-bookmark"></i> Save Revision
+                        </button>
+                        <button class="btn btn-outline-dark btn-sm rounded-pill px-3" onclick="window.print()">
+                            <i class="bi bi-printer"></i> Print
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <ul class="nav nav-pills mb-4 bg-white p-2 rounded-4 shadow-sm" id="pills-tab" role="tablist">
+                    <li class="nav-item flex-fill text-center" role="presentation">
+                        <button class="nav-link active w-100 py-2" id="notes-tab" data-bs-toggle="pill"
+                            data-bs-target="#notes" type="button" role="tab">
+                            Notes
+                        </button>
+                    </li>
+                    <li class="nav-item flex-fill text-center" role="presentation">
+                        <button class="nav-link w-100 py-2" id="mcq-tab" data-bs-toggle="pill" data-bs-target="#mcq"
+                            type="button" role="tab">
+                            MCQs
+                        </button>
+                    </li>
+                    <li class="nav-item flex-fill text-center" role="presentation">
+                        <button class="nav-link w-100 py-2" id="coding-tab" data-bs-toggle="pill"
+                            data-bs-target="#coding" type="button" role="tab">
+                            Coding
+                        </button>
+                    </li>
+                </ul>
+
+                <!-- Tab Panes -->
+                <div class="tab-content animate-fade-in" id="pills-tabContent">
+
+                    <!-- Notes Tab -->
+                    <div class="tab-pane fade show active" id="notes" role="tabpanel">
+                        <div class="card-premium p-4">
+                            <h4 class="fw-bold mb-3">Key Concepts Summary</h4>
+                            <div class="mb-4">
+                                <h6 class="fw-600 text-primary">1. Mutable vs Immutable</h6>
+                                <p class="text-secondary">Lists are <strong>mutable</strong>, meaning you can change,
+                                    add, and remove elements after creation. Tuples are <strong>immutable</strong>.</p>
+                            </div>
+                            <div class="mb-4">
+                                <h6 class="fw-600 text-primary">2. List Slicing</h6>
+                                <p class="text-secondary">Access ranges of elements using
+                                    <code>list[start:stop:step]</code>.
+                                </p>
+                                <div class="code-window mt-2 mb-3">
+                                    <div class="code-header">
+                                        <div class="dot dot-red"></div>
+                                        <div class="dot dot-yellow"></div>
+                                        <div class="dot dot-green"></div>
+                                    </div>
+                                    <code>colors = ['red', 'blue', 'green', 'yellow']<br>
+                                    print(colors[1:3]) # Output: ['blue', 'green']</code>
+                                </div>
+                            </div>
+
+                            <!-- MASTERY CHECKLIST -->
+                            <div class="card bg-success bg-opacity-10 border-0 rounded-4 p-4 mb-4">
+                                <h5 class="fw-bold mb-3"><i class="bi bi-patch-check-fill text-success me-2"></i> Topic
+                                    Mastery Checklist</h5>
+                                <div class="row g-3 text-start" id="dynamic-mastery-checklist">
+                                    <!-- Populated by JS -->
+                                    <div class="col-12 text-center py-2">
+                                        <div class="spinner-border spinner-border-sm text-success"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h4 class="fw-bold mb-3">Complexity Cheat Sheet</h4>
+                            <div class="table-responsive">
+                                <table class="table table-hover border">
+                                    <thead class="bg-light">
+                                        <tr>
+                                            <th>Operation</th>
+                                            <th>Average Case</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Append</td>
+                                            <td>O(1)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Insert</td>
+                                            <td>O(n)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Delete</td>
+                                            <td>O(n)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Access</td>
+                                            <td>O(1)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- COMMON PITFALLS -->
+                            <div class="card bg-danger bg-opacity-10 border-0 rounded-4 p-4 mt-4">
+                                <h5 class="fw-bold mb-3"><i
+                                        class="bi bi-exclamation-triangle-fill text-danger me-2"></i>
+                                    Common Pitfalls</h5>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <h6 class="fw-600 text-danger small">1. Mutable Default Arguments</h6>
+                                        <p class="text-secondary small mb-0">Avoid using <code>[]</code> or
+                                            <code>{}</code> as default function arguments; they persist across function
+                                            calls.
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6 class="fw-600 text-danger small">2. Modifying while Iterating</h6>
+                                        <p class="text-secondary small mb-0">Removing items from a list while looping
+                                            over it can cause unexpected behavior or skipped elements.</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6 class="fw-600 text-danger small">3. `is` vs `==`</h6>
+                                        <p class="text-secondary small mb-0">Use <code>==</code> for value equality and
+                                            <code>is</code> for identity (same memory location).
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6 class="fw-600 text-danger small">4. List Copying</h6>
+                                        <p class="text-secondary small mb-0"><code>list_b = list_a</code> only creates a
+                                            reference. Use <code>list_a.copy()</code> for a shallow copy.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MCQ Tab -->
+                    <div class="tab-pane fade" id="mcq" role="tabpanel">
+                        <div class="mcq-container">
+                            <!-- Q1 -->
+                            <div class="card-premium p-4 mb-4">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <span class="badge bg-light text-secondary rounded-pill">Question 1/5</span>
+                                    <span class="text-warning"><i class="bi bi-star-fill"></i> Medium</span>
+                                </div>
+                                <h5 class="fw-bold mb-4">Which of the following creates a new list by applying a
+                                    function to all elements in another list?</h5>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-outline-secondary text-start p-3 rounded-4 border-2">a. List
+                                        Application</button>
+                                    <button class="btn btn-outline-secondary text-start p-3 rounded-4 border-2">b. List
+                                        Comprehension</button>
+                                    <button class="btn btn-outline-secondary text-start p-3 rounded-4 border-2">c. List
+                                        Slicing</button>
+                                    <button class="btn btn-outline-secondary text-start p-3 rounded-4 border-2">d. List
+                                        Mapping</button>
+                                </div>
+                            </div>
+
+                            <!-- AI LEARNING TIP -->
+                            <div
+                                class="p-3 bg-primary bg-opacity-10 rounded-4 text-center mb-4 border border-primary border-opacity-25">
+                                <p class="small mb-0 text-primary">
+                                    <i class="bi bi-lightbulb-fill me-2"></i> <strong>AI Insight:</strong> Try
+                                    explaining these concepts to a rubber duck to cement your understanding!
+                                </p>
+                            </div>
+
+                            <!-- Q2 -->
+                            <div class="card-premium p-4 mb-4">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <span class="badge bg-light text-secondary rounded-pill">Question 2/5</span>
+                                    <span class="text-success"><i class="bi bi-star-fill"></i> Easy</span>
+                                </div>
+                                <h5 class="fw-bold mb-4">What is the time complexity of searching for an element in a
+                                    sorted list using binary search?</h5>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-outline-secondary text-start p-3 rounded-4 border-2">a.
+                                        O(n)</button>
+                                    <button class="btn btn-outline-secondary text-start p-3 rounded-4 border-2">b.
+                                        O(1)</button>
+                                    <button class="btn btn-outline-secondary text-start p-3 rounded-4 border-2">c. O(log
+                                        n)</button>
+                                    <button class="btn btn-outline-secondary text-start p-3 rounded-4 border-2">d. O(n
+                                        log n)</button>
+                                </div>
+                            </div>
+
+                            <div class="text-center mt-4">
+                                <button class="btn btn-premium px-5">Submit Quiz Results</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Coding Tab -->
+                    <div class="tab-pane fade" id="coding" role="tabpanel">
+                        <div class="card-premium p-4 mb-4">
+                            <div id="real-life-problem">
+                                <h4 class="fw-bold mb-3 text-primary" id="coding-title">Loading Real-Life Scenario...
+                                </h4>
+                                <p class="text-secondary" id="coding-description">Our AI is drafting a real-world case
+                                    study for you.</p>
+
+                                <div id="coding-hint-wrapper" class="d-none">
+                                    <div class="alert alert-warning border-0 p-3 rounded-4 small mb-4">
+                                        <i class="bi bi-lightbulb me-2"></i> <strong>Hint:</strong> <span
+                                            id="coding-hint"></span>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <h6 class="fw-bold mb-3">Solution Implementation:</h6>
+                                    <div class="editor-container">
+                                        <div class="editor-header d-flex justify-content-between">
+                                            <span class="text-muted small">solution.py</span>
+                                            <div class="d-flex gap-2">
+                                                <div class="dot dot-red"
+                                                    style="width: 10px; height: 10px; border-radius: 50%; background: #ff5f56;">
+                                                </div>
+                                                <div class="dot dot-yellow"
+                                                    style="width: 10px; height: 10px; border-radius: 50%; background: #ffbd2e;">
+                                                </div>
+                                                <div class="dot dot-green"
+                                                    style="width: 10px; height: 10px; border-radius: 50%; background: #27c93f;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="editor-main">
+                                            <div class="line-numbers" id="solution-line-numbers">1</div>
+                                            <textarea readonly class="code-textarea" id="coding-solution"
+                                                style="min-height: 250px;"># Loading solution...</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-0">
+                                    <h6 class="fw-bold mb-2 small text-muted">Expected Output:</h6>
+                                    <pre class="bg-dark text-success p-3 rounded-4 mb-0" style="font-size: 13px;"
+                                        id="coding-output"># Result will appear here</pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Practice Questions Section -->
+                        <div class="card-premium p-4 mb-4">
+                            <h4 class="fw-bold mb-4"><i class="bi bi-pencil-square me-2 text-primary"></i> Practice
+                                Questions</h4>
+                            <div id="practice-questions-container" class="row g-4">
+                                <div class="col-12 text-center py-4">
+                                    <div class="spinner-border spinner-border-sm text-primary"></div>
+                                    <p class="small text-muted mt-2">Generating practice challenges...</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Interactive Code Editor -->
+                        <div class="card-premium p-4">
+                            <h4 class="fw-bold mb-4"><i class="bi bi-code-slash me-2 text-primary"></i> Interactive
+                                Playground</h4>
+                            <p class="text-secondary small mb-4">Practice your skills here. Edit the code and click
+                                "Run" to see the output.</p>
+
+                            <div class="editor-container">
+                                <div class="editor-header d-flex justify-content-between align-items-center">
+                                    <span class="text-muted small">playground.py</span>
+                                    <button class="btn btn-primary btn-sm rounded-pill px-3" id="run-code-btn">
+                                        <i class="bi bi-play-fill"></i> Run Code
+                                    </button>
+                                </div>
+                                <div class="editor-main">
+                                    <div class="line-numbers" id="editor-line-numbers">1</div>
+                                    <textarea spellcheck="false" class="code-textarea" id="interactive-editor"
+                                        style="min-height: 300px;">// Write your code here...</textarea>
+                                </div>
+                            </div>
+
+                            <div class="console-container mt-3">
+                                <div class="console-header">Output Console</div>
+                                <div id="console-output">Ready to execute...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Ads & Recommendations -->
+            <div class="col-lg-4 d-none d-lg-block">
+                <div class="card-premium p-4 mb-4">
+                    <h6 class="fw-bold mb-3 text-primary"><i class="bi bi-map me-2"></i> Learning Roadmap</h6>
+                    <div class="roadmap-container small">
+                        <div class="roadmap-item d-flex gap-3 mb-3 opacity-50">
+                            <i class="bi bi-check-circle-fill text-success"></i>
+                            <span class="text-decoration-line-through">Python Basics</span>
+                        </div>
+                        <div class="roadmap-item d-flex gap-3 mb-3 fw-bold">
+                            <i class="bi bi-record-circle-fill text-primary"></i>
+                            <span>Data Structures</span>
+                        </div>
+                        <div class="roadmap-item d-flex gap-3 mb-3 opacity-75">
+                            <i class="bi bi-circle"></i>
+                            <span>Advanced Algorithms</span>
+                        </div>
+                        <div class="roadmap-item d-flex gap-3 opacity-75">
+                            <i class="bi bi-circle"></i>
+                            <span>System Design Prep</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-premium p-4 mb-4">
+                    <h6 class="fw-bold mb-3 text-secondary"><i class="bi bi-journal-text me-2"></i> Further Reading</h6>
+                    <ul class="list-group list-group-flush small" id="further-reading-list">
+                        <li class="list-group-item bg-transparent px-0 py-2 border-0">
+                            <span class="text-muted small">Loading resources...</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-premium p-4">
+                    <h6 class="fw-bold mb-3"><i class="bi bi-graph-up text-success me-2"></i> Quick Learning Stats</h6>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between small mb-1">
+                            <span>Concept Clarity</span>
+                            <span class="fw-bold">85%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between small mb-1">
+                            <span>Quiz Performance</span>
+                            <span class="fw-bold">60%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-warning" style="width: 60%"></div>
+                        </div>
+                    </div>
+                    <hr>
+                    <p class="small text-muted mb-0">Retake the quiz to improve your accuracy score!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Check for topic in URL parameters (for immediate search redirection)
+            const urlParams = new URLSearchParams(window.location.search);
+            const topicParam = urlParams.get('topic');
+            const langParam = urlParams.get('language') || 'Universal';
+            const diffParam = urlParams.get('difficulty') || 'Intermediate';
+            
+            let dataStr = sessionStorage.getItem('last_revision_data');
+            let data = dataStr ? JSON.parse(dataStr) : null;
+
+            // If we have a topic param but no data OR different topic, generate new content
+            // Normalise for comparison (lowercase, trimmed)
+            const topicMatch = data && data.topic && topicParam && data.topic.trim().toLowerCase() === topicParam.trim().toLowerCase();
+            if (topicParam && !topicMatch) {
+                const overlay = document.getElementById('loading-overlay');
+                const loadingTopic = document.getElementById('loading-topic');
+                if (overlay) {
+                    overlay.classList.remove('d-none');
+                    overlay.style.display = 'flex';
+                    if (loadingTopic) loadingTopic.textContent = topicParam;
+                }
+
+                try {
+                    const response = await fetch("http://127.0.0.1:5050/api/revision/generate", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${localStorage.getItem('token')}`
+                        },
+                        body: JSON.stringify({
+                            topic: topicParam,
+                            language: langParam,
+                            difficulty: diffParam
+                        })
+                    });
+
+                    if (response.ok) {
+                        const newData = await response.json();
+                        
+                        // Basic validation that we got content and not just an error object
+                        if (newData && (newData.notes || newData.mcqs)) {
+                            data = {
+                                topic: topicParam,
+                                language: langParam,
+                                difficulty: diffParam,
+                                ai_content: newData
+                            };
+                            sessionStorage.setItem('last_revision_data', JSON.stringify(data));
+                            if (overlay) overlay.classList.add('d-none');
+                        } else {
+                            throw new Error("AI returned an empty or invalid response.");
+                        }
+                    } else if (response.status === 401) {
+                        window.location.href = 'login.html';
+                        return;
+                    } else {
+                        const err = await response.json();
+                        throw new Error(err.error || err.message || 'Failed to generate content');
+                    }
+                } catch (error) {
+                    console.error("Generation error:", error);
+                    const overlay = document.getElementById('loading-overlay');
+                    if (overlay) {
+                        overlay.innerHTML = `
+                            <div class="text-center p-5">
+                                <i class="bi bi-exclamation-triangle text-danger display-1 mb-4"></i>
+                                <h3 class="fw-bold text-dark">Generation Failed</h3>
+                                <p class="text-muted mb-4">${error.message || 'Connection failed. Please ensure backend is running.'}</p>
+                                <div class="d-flex gap-3 justify-content-center">
+                                    <button class="btn btn-primary px-4 py-2 rounded-pill" onclick="location.reload()">
+                                        <i class="bi bi-arrow-clockwise me-2"></i>Retry
+                                    </button>
+                                    <a href="topic.html" class="btn btn-outline-secondary px-4 py-2 rounded-pill">
+                                        <i class="bi bi-search me-2"></i>Try Different Topic
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                    }
+                    return; // Stop execution
+                }
+            }
+
+            if (!data) {
+                window.location.href = 'topic.html';
+                return;
+            }
+
+            console.log("Loading revision data:", data);
+
+            // Global score tracker for real-time accuracy
+            window.currentQuizScore = "0%";
+
+            // Populate Metadata
+            const titleEl = document.querySelector('h2.fw-bold');
+            if (titleEl) {
+                titleEl.innerHTML = `${data.language || 'Topic'}: <span class="text-primary">${data.topic}</span>`;
+            }
+
+            const aiContent = data.ai_content || data.aiContent; // Handle both cases for robustness
+
+            // ── Further Reading (Internal Topic Navigation) ─────────────────
+            (function populateFurtherReading() {
+                const listEl = document.getElementById('further-reading-list');
+                if (!listEl) return;
+
+                const currentTopic = (data.topic || '').trim().toLowerCase();
+                const language     = data.language || 'Universal';
+                const difficulty   = data.difficulty || 'Intermediate';
+
+                // Use AI-generated further_reading for genuinely different, broader topics.
+                // Falls back to roadmap topics (excluding current) if field not present.
+                let relatedTopics = [];
+                if (aiContent && Array.isArray(aiContent.further_reading) && aiContent.further_reading.length) {
+                    relatedTopics = aiContent.further_reading.slice(0, 5);
+                } else if (aiContent && Array.isArray(aiContent.roadmap) && aiContent.roadmap.length) {
+                    // Fallback: filter roadmap so at least they differ from current
+                    relatedTopics = aiContent.roadmap.filter(
+                        t => t.trim().toLowerCase() !== currentTopic
+                    ).slice(0, 5);
+                }
+
+                if (relatedTopics.length === 0) {
+                    listEl.innerHTML = '<li class="list-group-item bg-transparent px-0 py-2 border-0"><span class="text-muted small">No related topics found.</span></li>';
+                    return;
+                }
+
+                listEl.innerHTML = relatedTopics.map(topic => {
+                    const params = new URLSearchParams({ topic, language, difficulty });
+                    const href   = `results.html?${params.toString()}`;
+                    return `
+                        <li class="list-group-item bg-transparent px-0 py-2 border-0">
+                            <a href="${href}"
+                               class="text-decoration-none text-dark d-flex justify-content-between align-items-center further-topic-link"
+                               style="transition: color 0.2s;">
+                                <span>
+                                    <i class="bi bi-arrow-right-circle text-primary me-2"></i>
+                                    ${topic}
+                                </span>
+                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill small px-2">Study →</span>
+                            </a>
+                        </li>`;
+                }).join('');
+            })();
+            // ────────────────────────────────────────────────────────────────
+
+            // Populate Notes
+            const notesContainer = document.querySelector('#notes .card-premium');
+            if (aiContent && aiContent.notes) {
+                let notesHtml = `<h4 class="fw-bold mb-3">AI Generated Notes</h4>`;
+
+                let notesArray = aiContent.notes;
+                
+                // If it's a string, look for embedded JSON
+                if (typeof notesArray === 'string') {
+                    const jsonMatch = notesArray.match(/\[\s*\{[\s\S]*\}\s*\]/);
+                    if (jsonMatch) {
+                        try {
+                            const parsed = JSON.parse(jsonMatch[0]);
+                            const textBefore = notesArray.substring(0, jsonMatch.index).trim();
+                            if (textBefore) {
+                                notesHtml = `<h5 class="fw-bold mb-3 text-secondary">${textBefore}</h5>`;
+                            }
+                            notesArray = parsed;
+                        } catch (e) {
+                            console.log("Found JSON-like structure but failed to parse:", e);
+                        }
+                    } else if (notesArray.trim().startsWith('[') || notesArray.trim().startsWith('{')) {
+                        try {
+                            notesArray = JSON.parse(notesArray);
+                        } catch (e) {}
+                    }
+                }
+
+                if (Array.isArray(notesArray)) {
+                    notesArray.forEach((note, index) => {
+                        let contentHtml = note.content || note.text || "";
+                        
+                        // Detect and format code blocks
+                        if (contentHtml.includes('```')) {
+                            contentHtml = contentHtml.replace(/```(\w*)\n([\s\S]*?)```/g, (match, lang, code) => {
+                                return `
+                                    <div class="code-window">
+                                        <div class="code-header">
+                                            <span class="code-lang">${lang || 'Code'}</span>
+                                            <div class="code-actions">
+                                                <button class="btn-code-action" onclick="copyCode(this)"><i class="bi bi-copy"></i> Copy</button>
+                                                ${(lang && lang.toLowerCase() === 'python') ? `<button class="btn-code-action" onclick="runInPlayground(\`${code.replace(/`/g, '\\`').trim()}\`)"><i class="bi bi-play"></i> Run</button>` : ''}
+                                            </div>
+                                        </div>
+                                        <pre class="code-body"><code>${code.trim()}</code></pre>
+                                    </div>
+                                `;
+                            });
+                        } else {
+                            contentHtml = contentHtml.replace(/\n/g, '<br>');
+                        }
+                        
+                        notesHtml += `
+                            <div class="mb-4">
+                                <h6 class="fw-bold text-primary mb-2">${index + 1}. ${note.title || 'Key Point'}</h6>
+                                <div class="text-secondary ps-3 border-start border-primary border-3" style="border-opacity: 0.2;">${contentHtml}</div>
+                            </div>
+                        `;
+                    });
+                } else if (typeof notesArray === 'string') {
+                    notesHtml += `
+                        <div class="mb-4">
+                            <p class="text-secondary">${notesArray.replace(/\n/g, '<br>')}</p>
+                        </div>
+                    `;
+                } else {
+                    notesHtml += `<p class="text-muted">Structured data format detected but un-parseable.</p>`;
+                }
+
+                notesContainer.innerHTML = notesHtml;
+            }
+
+            // Populate MCQs
+            const mcqContainer = document.querySelector('.mcq-container');
+            if (aiContent.mcqs && Array.isArray(aiContent.mcqs)) {
+                let mcqHtml = '';
+                aiContent.mcqs.forEach((q, index) => {
+                    const safeAnswer = q.answer.replace(/"/g, '&quot;');
+                    mcqHtml += `
+                        <div class="card-premium p-4 mb-4 mcq-card">
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-light text-secondary rounded-pill">Question ${index + 1}/${aiContent.mcqs.length}</span>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="${(q.difficulty === 'Easy' || q.difficulty === 'Beginner') ? 'text-success' : (q.difficulty === 'Hard' || q.difficulty === 'Advanced') ? 'text-danger' : 'text-warning'}">
+                                        <i class="bi bi-star-fill"></i> ${q.difficulty || 'Medium'}
+                                    </span>
+                                    <span class="mcq-status"></span>
+                                </div>
+                            </div>
+                            <h5 class="fw-bold mb-4">${q.question}</h5>
+                            <div class="d-grid gap-2 mcq-options" data-answer="${safeAnswer}">
+                                ${q.options.map((opt, i) => {
+                        const safeOpt = opt.replace(/"/g, '&quot;');
+                        return `<button class="btn btn-outline-secondary text-start p-3 rounded-4 border-2 mcq-btn" data-option="${safeOpt}">
+                                        ${String.fromCharCode(97 + i)}. ${opt}
+                                    </button>`;
+                    }).join('')}
+                            </div>
+                            ${q.explanation ? `<div class="mcq-explanation mt-3 d-none">
+                                <div class="alert alert-info border-0 rounded-4 small mb-0">
+                                    <i class="bi bi-lightbulb-fill me-2"></i><strong>Explanation:</strong> ${q.explanation}
+                                </div>
+                            </div>` : ''}
+                        </div>
+                    `;
+                });
+
+                // Submit All button + score area
+                mcqHtml += `
+                    <div id="mcq-score" class="d-none mb-4">
+                        <div class="card bg-primary bg-opacity-10 border-0 rounded-4 p-4 text-center">
+                            <h4 class="fw-bold mb-2"><i class="bi bi-trophy-fill text-warning me-2"></i>Quiz Results</h4>
+                            <p class="display-4 fw-bold text-primary mb-1" id="score-value"></p>
+                            <p class="text-secondary mb-0" id="score-message"></p>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4" id="submit-all-wrapper">
+                        <button class="btn btn-premium px-5 py-3 rounded-pill fw-bold" id="submit-all-mcqs">
+                            <i class="bi bi-check2-all me-2"></i>Submit All Answers
+                        </button>
+                    </div>
+                `;
+                mcqContainer.innerHTML = mcqHtml;
+
+                // Click to SELECT an option (toggle highlight, no grading yet)
+                mcqContainer.addEventListener('click', function (e) {
+                    const btn = e.target.closest('.mcq-btn');
+                    if (!btn || btn.disabled) return;
+
+                    const optionsDiv = btn.closest('.mcq-options');
+                    const allBtns = optionsDiv.querySelectorAll('.mcq-btn');
+
+                    // Deselect all options in this question
+                    allBtns.forEach(b => {
+                        b.classList.remove('btn-primary', 'text-white', 'fw-bold');
+                        b.classList.add('btn-outline-secondary');
+                    });
+
+                    // Select clicked option
+                    btn.classList.remove('btn-outline-secondary');
+                    btn.classList.add('btn-primary', 'text-white', 'fw-bold');
+                    btn.setAttribute('data-selected', 'true');
+                });
+
+                // Submit All button
+                document.getElementById('submit-all-mcqs').addEventListener('click', function () {
+                    const allCards = mcqContainer.querySelectorAll('.mcq-card');
+                    let correct = 0;
+                    let total = allCards.length;
+                    let unanswered = 0;
+
+                    allCards.forEach(card => {
+                        const optionsDiv = card.querySelector('.mcq-options');
+                        const correctAnswer = optionsDiv.dataset.answer;
+                        const allBtns = optionsDiv.querySelectorAll('.mcq-btn');
+                        const selectedBtn = optionsDiv.querySelector('.btn-primary');
+                        const statusSpan = card.querySelector('.mcq-status');
+
+                        if (!selectedBtn) {
+                            unanswered++;
+                            statusSpan.innerHTML = '<span class="badge bg-warning text-dark rounded-pill">Skipped</span>';
+                            // Show correct answer for skipped questions
+                            allBtns.forEach(b => {
+                                b.disabled = true;
+                                if (b.dataset.option === correctAnswer) {
+                                    b.classList.remove('btn-outline-secondary');
+                                    b.classList.add('btn-success', 'text-white', 'fw-bold');
+                                    b.innerHTML += ' <i class="bi bi-check-circle-fill ms-2"></i>';
+                                }
+                            });
+                        } else {
+                            const selectedOption = selectedBtn.dataset.option;
+                            allBtns.forEach(b => b.disabled = true);
+
+                            if (selectedOption === correctAnswer) {
+                                correct++;
+                                selectedBtn.classList.remove('btn-primary');
+                                selectedBtn.classList.add('btn-success');
+                                selectedBtn.innerHTML += ' <i class="bi bi-check-circle-fill ms-2"></i>';
+                                statusSpan.innerHTML = '<span class="badge bg-success rounded-pill">Correct</span>';
+                            } else {
+                                selectedBtn.classList.remove('btn-primary');
+                                selectedBtn.classList.add('btn-danger');
+                                selectedBtn.innerHTML += ' <i class="bi bi-x-circle-fill ms-2"></i>';
+                                statusSpan.innerHTML = '<span class="badge bg-danger rounded-pill">Wrong</span>';
+                                // Highlight correct answer
+                                allBtns.forEach(b => {
+                                    if (b.dataset.option === correctAnswer) {
+                                        b.classList.remove('btn-outline-secondary');
+                                        b.classList.add('btn-success', 'text-white', 'fw-bold');
+                                        b.innerHTML += ' <i class="bi bi-check-circle-fill ms-2"></i>';
+                                    }
+                                });
+                            }
+                        }
+
+                        // Show explanation
+                        const explanation = card.querySelector('.mcq-explanation');
+                        if (explanation) explanation.classList.remove('d-none');
+                    });
+
+                    // Show score
+                    const scoreDiv = document.getElementById('mcq-score');
+                    const scoreValue = document.getElementById('score-value');
+                    const scoreMsg = document.getElementById('score-message');
+                    const pct = Math.round((correct / total) * 100);
+
+                    scoreValue.textContent = `${correct} / ${total}`;
+                    if (pct === 100) scoreMsg.textContent = 'Perfect score! You nailed every question! 🎯';
+                    else if (pct >= 80) scoreMsg.textContent = 'Great job! You have a strong understanding.';
+                    else if (pct >= 60) scoreMsg.textContent = 'Good effort! Review the explanations to improve.';
+                    else scoreMsg.textContent = 'Keep practicing! Review the notes and try again.';
+                    if (unanswered > 0) scoreMsg.textContent += ` (${unanswered} skipped)`;
+
+                    // Update real-time accuracy
+                    const finalPct = pct + "%";
+                    window.currentQuizScore = finalPct;
+
+                    // --- NEW: Notification & Toast Feedback ---
+                    if (typeof showToast === 'function') {
+                        showToast(`Quiz Completed! You scored ${correct}/${total} (${pct}%)`, pct >= 60 ? 'success' : 'warning');
+                    }
+                    
+                    // Save to Notification Center
+                    const notifTitle = pct >= 80 ? 'Excellent Quiz Result! 🎯' : 'Quiz Completed';
+                    const notifIcon = pct >= 80 ? 'bi-trophy-fill' : 'bi-check-circle-fill';
+                    if (typeof saveNotification === 'function') {
+                        saveNotification(notifTitle, `Topic: ${data.topic} | Score: ${correct}/${total}`, pct >= 60 ? 'success' : 'info', notifIcon);
+                    }
+                    
+                    // Sync with cloud if saved
+                    if (data.id) {
+                        fetch(`http://127.0.0.1:5050/api/revision/${data.id}`, {
+                            method: 'PATCH',
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Authorization": `Bearer ${localStorage.getItem('token')}`
+                            },
+                            body: JSON.stringify({ accuracy: finalPct })
+                        }).catch(e => console.error("Sync Error:", e));
+                    }
+
+                    scoreDiv.classList.remove('d-none');
+
+                    // Hide submit button, show retry
+                    document.getElementById('submit-all-wrapper').innerHTML = `
+                        <button class="btn btn-outline-primary px-5 py-3 rounded-pill fw-bold" onclick="location.reload()">
+                            <i class="bi bi-arrow-repeat me-2"></i>Retry Quiz
+                        </button>
+                    `;
+
+                    // Scroll to score
+                    scoreDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+            }
+
+            // Populate Coding
+            const pqContainer = document.getElementById('practice-questions-container');
+            if (aiContent && aiContent.coding_practice) {
+                const cp = aiContent.coding_practice;
+                const rlp = cp.real_life_problem;
+
+                // 1. Real-Life Problem
+                if (rlp) {
+                    document.getElementById('coding-title').textContent = rlp.title || "Coding Challenge";
+                    document.getElementById('coding-description').textContent = rlp.scenario || "Real-world scenario implementation.";
+                    if (rlp.hint) {
+                        document.getElementById('coding-hint-wrapper').classList.remove('d-none');
+                        document.getElementById('coding-hint').textContent = rlp.hint;
+                    }
+                    let solution = rlp.solution || "";
+                    // Count lines
+                    const lineCount = (solution.match(/\n/g) || []).length;
+
+                    if (lineCount < 3 && solution.length > 30) {
+                        // Force multi-line formatting if AI provides a blob
+                        let depth = 0;
+                        solution = solution
+                            .replace(/([;{}])/g, '$1\n') // Newline after ; { }
+                            .split('\n')
+                            .map(line => {
+                                line = line.trim();
+                                if (line.includes('}')) depth--;
+                                const indented = '    '.repeat(Math.max(0, depth)) + line;
+                                if (line.includes('{')) depth++;
+                                return indented;
+                            })
+                            .join('\n')
+                            .replace(/\n\s*\n+/g, '\n') // Remove empty lines
+                            .trim();
+                    }
+                    const solTextarea = document.getElementById('coding-solution');
+                    solTextarea.value = solution;
+                    document.getElementById('coding-output').textContent = rlp.output || "No output provided.";
+
+                    // Update line numbers for solution
+                    updateLineNumbers(solTextarea, 'solution-line-numbers');
+                }
+
+                // 2. Practice Questions
+                if (pqContainer) {
+                    if (cp.practice_questions && Array.isArray(cp.practice_questions) && cp.practice_questions.length > 0) {
+                        pqContainer.innerHTML = cp.practice_questions.map((pq, idx) => `
+                            <div class="col-12">
+                                <div class="card-premium p-3 border-0 practice-question-card bg-light">
+                                    <h6 class="fw-bold text-primary mb-2">Question ${idx + 1}: ${pq.statement}</h6>
+                                    <div class="row g-2 mt-2">
+                                        <div class="col-md-6">
+                                            <span class="small text-muted d-block">Input:</span>
+                                            <code class="small text-dark">${pq.input || 'N/A'}</code>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class="small text-muted d-block">Expected Output:</span>
+                                            <code class="small text-success fw-bold">${pq.output || 'N/A'}</code>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('');
+                    } else {
+                        pqContainer.innerHTML = '<div class="col-12 text-center py-4"><p class="text-muted small">No practice questions available for this topic.</p></div>';
+                    }
+                }
+            } else if (aiContent && aiContent.coding_question) {
+                // Fallback for legacy format
+                document.getElementById('coding-title').textContent = aiContent.coding_question.title || "Coding Challenge";
+                document.getElementById('coding-description').textContent = aiContent.coding_question.description || "";
+                document.getElementById('coding-solution').value = aiContent.coding_question.solution || "";
+                document.getElementById('coding-output').textContent = aiContent.coding_question.sample_output || aiContent.coding_question.output || "Executed successfully.";
+                updateLineNumbers(document.getElementById('coding-solution'), 'solution-line-numbers');
+
+                // Clear spinner for legacy format
+                if (pqContainer) {
+                    pqContainer.innerHTML = `
+                        <div class="col-12 text-center py-5">
+                            <i class="bi bi-patch-question text-muted display-4 mb-3 d-block"></i>
+                            <p class="text-muted mb-4">Practice questions are not available for this legacy revision.</p>
+                            <button class="btn btn-premium px-4" onclick="window.loadTopic('${data.topic.replace(/'/g, "\\'")}')">
+                                <i class="bi bi-magic me-2"></i> Generate Practice Questions
+                            </button>
+                        </div>
+                    `;
+                }
+            }
+
+            // --- Editor Functions ---
+            function updateLineNumbers(textarea, lineNumbersId) {
+                const lineNumbers = document.getElementById(lineNumbersId);
+                const lines = textarea.value.split('\n').length;
+                let html = '';
+                for (let i = 1; i <= lines; i++) {
+                    html += i + '<br>';
+                }
+                lineNumbers.innerHTML = html;
+            }
+
+            const interactiveEditor = document.getElementById('interactive-editor');
+            if (interactiveEditor) {
+                interactiveEditor.addEventListener('input', () => {
+                    updateLineNumbers(interactiveEditor, 'editor-line-numbers');
+                });
+
+                // TAB Support
+                interactiveEditor.addEventListener('keydown', function (e) {
+                    if (e.key === 'Tab') {
+                        e.preventDefault();
+                        const start = this.selectionStart;
+                        const end = this.selectionEnd;
+                        this.value = this.value.substring(0, start) + "    " + this.value.substring(end);
+                        this.selectionStart = this.selectionEnd = start + 4;
+                        updateLineNumbers(this, 'editor-line-numbers');
+                    }
+                });
+
+                // Initial line numbers
+                updateLineNumbers(interactiveEditor, 'editor-line-numbers');
+            }
+
+            // Initialize Playground with Boilerplate
+            const setEditorBoilerplate = (lang) => {
+                const editor = document.getElementById('interactive-editor');
+                if (!editor) return;
+
+                const boilerplates = {
+                    'python': 'print("Hello, Python!")\n# Try some logic\nfor i in range(3):\n    print(f"Count: {i}")',
+                    'c': '#include <stdio.h>\n\nint main() {\n    printf("Hello, C Programming!\\n");\n    return 0;\n}',
+                    'cpp': '#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Hello, C++!" << endl;\n    return 0;\n}',
+                    'java': 'public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello, Java!");\n    }\n}',
+                    'javascript': 'console.log("Hello, JavaScript!");\n\n// Try an array\nlet topics = ["Variables", "Loops", "Functions"];\ntopics.forEach(t => console.log("- " + t));',
+                    'html': '<!-- HTML Playground -->\n<h1>Hello, HTML!</h1>\n<p>This is a live preview simulation.</p>',
+                    'dbms': '-- SQL Query Simulation\nSELECT * FROM courses WHERE name = \'Python\';\n\n-- Mock Result\n-- ID | Name   | Status\n-- 1  | Python | Active',
+                    'dsa': '# DSA Logic (Python Style)\ndef binary_search(arr, x):\n    print("Searching for " + str(x) + "...")\n    return "Found at index 4"\n\nprint(binary_search([1,2,3,4,5], 5))'
+                };
+
+                const cleanLang = (lang || 'Universal').toLowerCase();
+                editor.value = boilerplates[cleanLang] || '// Write your ' + cleanLang + ' code here...\n';
+                updateLineNumbers(editor, 'editor-line-numbers');
+                
+                // Update file extension label
+                const extMap = { 'python': 'py', 'c': 'c', 'cpp': 'cpp', 'java': 'java', 'javascript': 'js', 'html': 'html', 'dbms': 'sql' };
+                const headerSpan = document.querySelector('.editor-header .text-muted.small');
+                if (headerSpan) headerSpan.textContent = `playground.${extMap[cleanLang] || 'txt'}`;
+            };
+
+            setEditorBoilerplate(data.language);
+
+            // --- Skulpt Python Integration ---
+            function outf(text) {
+                const consoleOut = document.getElementById('console-output');
+                if (text.trim() === "") return;
+                consoleOut.innerHTML += `<div class="text-success fw-bold mt-1">${text.replace(/\n/g, '<br>')}</div>`;
+                consoleOut.scrollTop = consoleOut.scrollHeight;
+            }
+
+            function builtinRead(x) {
+                if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+                    throw "File not found: '" + x + "'";
+                return Sk.builtinFiles["files"][x];
+            }
+
+            const runBtn = document.getElementById('run-code-btn');
+            if (runBtn) {
+                runBtn.addEventListener('click', async () => {
+                    const startTime = performance.now();
+                    const consoleOut = document.getElementById('console-output');
+                    consoleOut.innerHTML = '';
+                    
+                    const log = (msg, type = 'muted') => {
+                        consoleOut.innerHTML += `<div class="text-${type} mb-1">> ${msg}</div>`;
+                        consoleOut.scrollTop = consoleOut.scrollHeight;
+                    };
+
+                    log('Run started', 'info');
+                    
+                    setTimeout(async () => {
+                        log('Initializing environment...', 'muted');
+                        
+                        setTimeout(async () => {
+                            log('Running code...', 'primary fw-bold text-decoration-underline');
+                            
+                            const code = interactiveEditor.value;
+                            const lang = (data.language || 'Universal').toLowerCase();
+
+                            if (lang === 'python' || lang === 'dsa') {
+                                if (typeof Sk === 'undefined') {
+                                    log('Error: Python execution engine (Skulpt) failed to load. Please check your internet connection.', 'danger');
+                                    return;
+                                }
+                                Sk.pre = "console-output";
+                                Sk.configure({ output: outf, read: builtinRead });
+                                try {
+                                    await Sk.misceval.asyncToPromise(() => {
+                                        return Sk.importMainWithBody("<stdin>", false, code, true);
+                                    });
+                                } catch (err) {
+                                    consoleOut.innerHTML += `<div class="text-danger fw-bold mt-2">> ${err.toString()}</div>`;
+                                }
+                            } else if (lang === 'javascript') {
+                                try {
+                                    const oldLog = console.log;
+                                    console.log = function (msg) {
+                                        consoleOut.innerHTML += `<div class="text-success fw-bold mt-1">${msg}</div>`;
+                                    };
+                                    eval(code);
+                                    console.log = oldLog;
+                                } catch (err) {
+                                    consoleOut.innerHTML += `<div class="text-danger fw-bold mt-2">> ${err.toString()}</div>`;
+                                }
+                            } else {
+                                let outputLines = [];
+                                if (lang === 'c') {
+                                    const prints = code.match(/printf\s*\(\s*["'](.*)\\n["']\s*\)/g);
+                                    if (prints) outputLines = prints.map(p => p.match(/["'](.*)\\n["']/)[1]);
+                                } else if (lang === 'cpp') {
+                                    const prints = code.match(/cout\s*<<\s*["'](.*)["']/g);
+                                    if (prints) outputLines = prints.map(p => p.match(/["'](.*)["']/)[1]);
+                                } else if (lang === 'java') {
+                                    const prints = code.match(/System\.out\.println\s*\(\s*["'](.*)["']\s*\)/g);
+                                    if (prints) outputLines = prints.map(p => p.match(/["'](.*)["']/)[1]);
+                                }
+
+                                if (outputLines.length > 0) {
+                                    outputLines.forEach(line => {
+                                        consoleOut.innerHTML += `<div class="text-success fw-bold mt-1">${line}</div>`;
+                                    });
+                                } else {
+                                    consoleOut.innerHTML += `<div class="text-info mt-1">Program executed successfully (Simulated).</div>`;
+                                }
+                            }
+
+                            const duration = (performance.now() - startTime).toFixed(1);
+                            consoleOut.innerHTML += `<div class="text-muted mt-3">Run completed in ${duration}ms [Exit Code 0]</div>`;
+                            consoleOut.scrollTop = consoleOut.scrollHeight;
+
+                        }, 600);
+                    }, 400);
+                });
+            }
+
+            // Populate Roadmap Sidebar
+            const roadmapContainer = document.querySelector('.roadmap-container');
+            if (aiContent && aiContent.roadmap && Array.isArray(aiContent.roadmap)) {
+                // Initialize completion status from local storage if exists
+                const completionKey = `roadmap_completion_${data.topic}_${data.language}`;
+                let completedIndices = JSON.parse(localStorage.getItem(completionKey) || '[]');
+
+                const renderRoadmap = () => {
+                    let roadmapHtml = '';
+                    aiContent.roadmap.forEach((topic, idx) => {
+                        const isCurrent = topic.toLowerCase() === data.topic.toLowerCase();
+                        const isCompleted = completedIndices.includes(idx);
+
+                        roadmapHtml += `
+                            <div class="roadmap-item d-flex align-items-center gap-3 mb-3 ${isCurrent ? 'fw-bold text-primary' : 'opacity-75'}" 
+                                 style="transition: all 0.3s ease;">
+                                <div class="form-check m-0 p-0 d-flex align-items-center">
+                                    <input class="form-check-input roadmap-checkbox" type="checkbox" 
+                                           ${isCompleted ? 'checked' : ''} 
+                                           id="roadmap-check-${idx}" 
+                                           style="width: 1.2rem; height: 1.2rem; cursor: pointer; border-radius: 4px;"
+                                           onchange="window.toggleRoadmapItem(${idx})">
+                                </div>
+                                <span class="roadmap-text ${isCompleted ? 'text-decoration-line-through text-muted' : ''} ${!isCurrent ? 'cursor-pointer' : ''}" 
+                                      style="cursor: pointer; flex-grow: 1;"
+                                      onclick="${isCurrent ? '' : `window.loadTopic('${topic.replace(/'/g, "\\'")}')`}">
+                                    ${topic}
+                                </span>
+                                ${isCurrent ? '<span class="badge bg-primary-subtle text-primary border border-primary-shared small" style="font-size: 10px;">Current</span>' : ''}
+                            </div>
+                        `;
+                    });
+                    roadmapContainer.innerHTML = roadmapHtml;
+                };
+
+                // --- Dynamic Mastery Checklist (Main Content) ---
+                const masteryContainer = document.getElementById('dynamic-mastery-checklist');
+                const renderMasteryChecklist = () => {
+                    if (!masteryContainer) return;
+                    let masteryHtml = '';
+                    aiContent.roadmap.forEach((topic, idx) => {
+                        const isCompleted = completedIndices.includes(idx);
+                        masteryHtml += `
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" 
+                                           ${isCompleted ? 'checked' : ''} 
+                                           id="mastery-check-${idx}"
+                                           onchange="window.toggleRoadmapItem(${idx})">
+                                    <label class="form-check-label small ${isCompleted ? 'text-decoration-line-through text-muted' : ''}" for="mastery-check-${idx}">
+                                        ${topic}
+                                    </label>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    masteryContainer.innerHTML = masteryHtml;
+                };
+
+                window.toggleRoadmapItem = (idx) => {
+                    const index = completedIndices.indexOf(idx);
+                    if (index > -1) {
+                        completedIndices.splice(index, 1);
+                    } else {
+                        completedIndices.push(idx);
+                    }
+                    localStorage.setItem(completionKey, JSON.stringify(completedIndices));
+
+                    // Sync with cloud if saved
+                    if (data.id) {
+                        const pg = Math.round((completedIndices.length / aiContent.roadmap.length) * 100);
+                        fetch(`http://127.0.0.1:5050/api/revision/${data.id}`, {
+                            method: 'PATCH',
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Authorization": `Bearer ${localStorage.getItem('token')}`
+                            },
+                            body: JSON.stringify({ progress: pg })
+                        }).catch(e => console.error("Sync Error:", e));
+                    }
+
+                    // Re-render both
+                    renderRoadmap();
+                    renderMasteryChecklist();
+
+                    if (completedIndices.length === aiContent.roadmap.length) {
+                        if (typeof showToast === 'function') {
+                            showToast('Congratulations! You finished the roadmap for this topic! 🏆', 'success');
+                        }
+                    }
+                };
+
+                renderRoadmap();
+                renderMasteryChecklist();
+            }
+
+            // Define Global Load Topic function
+            // Clicking a roadmap topic navigates to results.html?topic=...
+            // The page will auto-generate content for that topic.
+            window.loadTopic = function (newTopic) {
+                if (!newTopic) return;
+                const params = new URLSearchParams({
+                    topic: newTopic,
+                    language: data.language || 'Universal',
+                    difficulty: data.difficulty || 'Intermediate'
+                });
+                // Clear session so the new topic is always freshly generated
+                sessionStorage.removeItem('last_revision_data');
+                window.location.href = `results.html?${params.toString()}`;
+            };
+
+            // LEGACY: keep async version for any other callers but just redirect
+            window.loadTopicAsync = async function (newTopic) {
+                const overlay = document.getElementById('loading-overlay');
+                if (overlay) {
+                    overlay.classList.remove('d-none');
+                    overlay.style.display = 'flex';
+                }
+
+                try {
+                    const response = await fetch("http://127.0.0.1:5050/api/revision/generate", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${localStorage.getItem('token')}`
+                        },
+                        body: JSON.stringify({
+                            topic: newTopic,
+                            language: data.language || 'Universal',
+                            difficulty: data.difficulty || 'Intermediate'
+                        })
+                    });
+
+                    if (response.ok) {
+                        const newData = await response.json();
+                        sessionStorage.setItem('last_revision_data', JSON.stringify({
+                            topic: newTopic,
+                            language: data.language || 'Universal',
+                            difficulty: data.difficulty || 'Intermediate',
+                            ai_content: newData
+                        }));
+                        window.location.reload();
+                    } else {
+                        const err = await response.json();
+                        if (typeof showToast === 'function') {
+                            showToast(err.message || 'Failed to generate content', 'danger');
+                        } else {
+                            alert(err.message || 'Failed to generate content');
+                        }
+                        if (overlay) overlay.classList.add('d-none');
+                    }
+                } catch (error) {
+                    console.error("Topic switch error:", error);
+                    if (typeof showToast === 'function') {
+                        showToast('Server connection failed. Please ensure the backend is running.', 'danger');
+                    } else {
+                        alert('Server connection failed. Please ensure the backend is running.');
+                    }
+                    if (overlay) overlay.classList.add('d-none');
+                }
+            };
+
+            // Save Revision Logic
+            const saveBtn = document.getElementById('save-revision');
+            if (saveBtn) {
+                saveBtn.addEventListener('click', async function () {
+                    this.disabled = true;
+                    this.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Saving...';
+
+                    try {
+                        const roadmapChecks = JSON.parse(localStorage.getItem(`roadmap_completion_${data.topic}_${data.language}`) || '[]');
+                        const totalRoadmap = (aiContent.roadmap || []).length;
+                        const progressPct = totalRoadmap > 0 ? Math.round((roadmapChecks.length / totalRoadmap) * 100) : 0;
+
+                        const response = await fetch("http://127.0.0.1:5050/api/revision/save", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Authorization": `Bearer ${localStorage.getItem('token')}`
+                            },
+                            body: JSON.stringify({
+                                topic: data.topic,
+                                language: data.language,
+                                difficulty: data.difficulty,
+                                notes: JSON.stringify(aiContent), // Save full object (notes, mcqs, coding)
+                                accuracy: window.currentQuizScore || "0%",
+                                progress: progressPct
+                            })
+                        });
+
+                        if (response.ok) {
+                            const resData = await response.json();
+                            // Update local session with the ID so sync works immediately
+                            data.id = resData.revision.id;
+                            sessionStorage.setItem('last_revision_data', JSON.stringify(data));
+                            
+                            showToast('Revision saved to your account!', 'success');
+                            this.innerHTML = '<i class="bi bi-bookmark-fill"></i> Saved';
+                        } else {
+                            showToast('Failed to save to cloud.', 'danger');
+                            this.disabled = false;
+                            this.innerHTML = '<i class="bi bi-bookmark"></i> Save Revision';
+                        }
+                    } catch (error) {
+                        showToast('Network error.', 'danger');
+                        this.disabled = false;
+                        this.innerHTML = '<i class="bi bi-bookmark"></i> Save Revision';
+                    }
+                });
+            }
+        });
+
+        // Helper functions for code blocks
+        window.copyCode = (btn) => {
+            const code = btn.closest('.code-window').querySelector('code').innerText;
+            navigator.clipboard.writeText(code);
+            const original = btn.innerHTML;
+            btn.innerHTML = '<i class="bi bi-check2"></i> Copied!';
+            setTimeout(() => btn.innerHTML = original, 2000);
+        };
+
+        window.runInPlayground = (code) => {
+            const editor = document.getElementById('interactive-editor');
+            if (editor) {
+                editor.value = code;
+                // Switch tab to Coding
+                const codingTab = document.getElementById('coding-tab');
+                if (codingTab) codingTab.click();
+                // Scroll to editor
+                editor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                showToast("Code loaded into playground!", "success");
+            }
+        };
+    </script>
+
+</html>

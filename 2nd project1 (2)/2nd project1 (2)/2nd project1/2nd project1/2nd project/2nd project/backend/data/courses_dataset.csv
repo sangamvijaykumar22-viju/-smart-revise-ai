@@ -1,0 +1,115 @@
+ID,Course Name,Category,Description,Module Name,Topic
+c_programming,C Programming,Programming Languages,"Master the foundation of modern computing. Learn memory management, pointers, and low-level optimization.",Introduction,History of C
+c_programming,C Programming,Programming Languages,"Master the foundation of modern computing. Learn memory management, pointers, and low-level optimization.",Introduction,Environment Setup
+c_programming,C Programming,Programming Languages,"Master the foundation of modern computing. Learn memory management, pointers, and low-level optimization.",Introduction,Structure of C Program
+c_programming,C Programming,Programming Languages,"Master the foundation of modern computing. Learn memory management, pointers, and low-level optimization.",Basics,Variables & Constants
+c_programming,C Programming,Programming Languages,"Master the foundation of modern computing. Learn memory management, pointers, and low-level optimization.",Basics,Data Types
+c_programming,C Programming,Programming Languages,"Master the foundation of modern computing. Learn memory management, pointers, and low-level optimization.",Basics,Operators & Expressions
+c_programming,C Programming,Programming Languages,"Master the foundation of modern computing. Learn memory management, pointers, and low-level optimization.",Control Flow,if-else
+c_programming,C Programming,Programming Languages,"Master the foundation of modern computing. Learn memory management, pointers, and low-level optimization.",Control Flow,switch-case
+c_programming,C Programming,Programming Languages,"Master the foundation of modern computing. Learn memory management, pointers, and low-level optimization.",Control Flow,"Looping (for, while, do-while)"
+c_programming,C Programming,Programming Languages,"Master the foundation of modern computing. Learn memory management, pointers, and low-level optimization.",Advanced Concepts,Functions
+c_programming,C Programming,Programming Languages,"Master the foundation of modern computing. Learn memory management, pointers, and low-level optimization.",Advanced Concepts,Arrays & Strings
+c_programming,C Programming,Programming Languages,"Master the foundation of modern computing. Learn memory management, pointers, and low-level optimization.",Advanced Concepts,Pointers
+c_programming,C Programming,Programming Languages,"Master the foundation of modern computing. Learn memory management, pointers, and low-level optimization.",Advanced Concepts,Structures & Unions
+c_programming,C Programming,Programming Languages,"Master the foundation of modern computing. Learn memory management, pointers, and low-level optimization.",Advanced Concepts,File I/O
+python,Python,Programming Languages,"The most popular language for AI, Data Science, and Web Development. Clean, readable, and powerful.",Basics,Installation & Setup
+python,Python,Programming Languages,"The most popular language for AI, Data Science, and Web Development. Clean, readable, and powerful.",Basics,Variables & Types
+python,Python,Programming Languages,"The most popular language for AI, Data Science, and Web Development. Clean, readable, and powerful.",Basics,Basic Math
+python,Python,Programming Languages,"The most popular language for AI, Data Science, and Web Development. Clean, readable, and powerful.",Data Structures,Lists
+python,Python,Programming Languages,"The most popular language for AI, Data Science, and Web Development. Clean, readable, and powerful.",Data Structures,Dictionaries
+python,Python,Programming Languages,"The most popular language for AI, Data Science, and Web Development. Clean, readable, and powerful.",Data Structures,Tuples
+python,Python,Programming Languages,"The most popular language for AI, Data Science, and Web Development. Clean, readable, and powerful.",Data Structures,Sets
+python,Python,Programming Languages,"The most popular language for AI, Data Science, and Web Development. Clean, readable, and powerful.",Logic,Conditions
+python,Python,Programming Languages,"The most popular language for AI, Data Science, and Web Development. Clean, readable, and powerful.",Logic,Loops
+python,Python,Programming Languages,"The most popular language for AI, Data Science, and Web Development. Clean, readable, and powerful.",Logic,List Comprehensions
+python,Python,Programming Languages,"The most popular language for AI, Data Science, and Web Development. Clean, readable, and powerful.",Advanced,Functions & Lambdas
+python,Python,Programming Languages,"The most popular language for AI, Data Science, and Web Development. Clean, readable, and powerful.",Advanced,Modules & Packages
+python,Python,Programming Languages,"The most popular language for AI, Data Science, and Web Development. Clean, readable, and powerful.",Advanced,Object Oriented Programming
+python,Python,Programming Languages,"The most popular language for AI, Data Science, and Web Development. Clean, readable, and powerful.",Advanced,File Handling
+java,Java,Programming Languages,"Enterprise-grade development. Learn the language that powers banking, Android, and massive scale systems.",Core Java,JVM Architecture
+java,Java,Programming Languages,"Enterprise-grade development. Learn the language that powers banking, Android, and massive scale systems.",Core Java,JDK vs JRE
+java,Java,Programming Languages,"Enterprise-grade development. Learn the language that powers banking, Android, and massive scale systems.",Core Java,Data Types
+java,Java,Programming Languages,"Enterprise-grade development. Learn the language that powers banking, Android, and massive scale systems.",Core Java,OOPs Principles
+java,Java,Programming Languages,"Enterprise-grade development. Learn the language that powers banking, Android, and massive scale systems.",OOPs Deep Dive,Inheritance
+java,Java,Programming Languages,"Enterprise-grade development. Learn the language that powers banking, Android, and massive scale systems.",OOPs Deep Dive,Polymorphism
+java,Java,Programming Languages,"Enterprise-grade development. Learn the language that powers banking, Android, and massive scale systems.",OOPs Deep Dive,Abstraction
+java,Java,Programming Languages,"Enterprise-grade development. Learn the language that powers banking, Android, and massive scale systems.",OOPs Deep Dive,Encapsulation
+java,Java,Programming Languages,"Enterprise-grade development. Learn the language that powers banking, Android, and massive scale systems.",OOPs Deep Dive,Interfaces
+java,Java,Programming Languages,"Enterprise-grade development. Learn the language that powers banking, Android, and massive scale systems.",Collections,ArrayList
+java,Java,Programming Languages,"Enterprise-grade development. Learn the language that powers banking, Android, and massive scale systems.",Collections,HashMap
+java,Java,Programming Languages,"Enterprise-grade development. Learn the language that powers banking, Android, and massive scale systems.",Collections,HashSet
+java,Java,Programming Languages,"Enterprise-grade development. Learn the language that powers banking, Android, and massive scale systems.",Collections,Iterators
+java,Java,Programming Languages,"Enterprise-grade development. Learn the language that powers banking, Android, and massive scale systems.",Advanced,Exception Handling
+java,Java,Programming Languages,"Enterprise-grade development. Learn the language that powers banking, Android, and massive scale systems.",Advanced,Multithreading
+java,Java,Programming Languages,"Enterprise-grade development. Learn the language that powers banking, Android, and massive scale systems.",Advanced,JDBC
+java,Java,Programming Languages,"Enterprise-grade development. Learn the language that powers banking, Android, and massive scale systems.",Advanced,Streams API
+cpp,C++,Programming Languages,High-performance systems programming. Master competitive programming and game engine development.,Foundations,C vs C++
+cpp,C++,Programming Languages,High-performance systems programming. Master competitive programming and game engine development.,Foundations,Standard I/O
+cpp,C++,Programming Languages,High-performance systems programming. Master competitive programming and game engine development.,Foundations,Namespace
+cpp,C++,Programming Languages,High-performance systems programming. Master competitive programming and game engine development.,OOP in C++,Classes & Objects
+cpp,C++,Programming Languages,High-performance systems programming. Master competitive programming and game engine development.,OOP in C++,Constructors & Destructors
+cpp,C++,Programming Languages,High-performance systems programming. Master competitive programming and game engine development.,OOP in C++,Friend Functions
+cpp,C++,Programming Languages,High-performance systems programming. Master competitive programming and game engine development.,STL,Vectors
+cpp,C++,Programming Languages,High-performance systems programming. Master competitive programming and game engine development.,STL,Lists
+cpp,C++,Programming Languages,High-performance systems programming. Master competitive programming and game engine development.,STL,Maps
+cpp,C++,Programming Languages,High-performance systems programming. Master competitive programming and game engine development.,STL,Queues & Stacks
+cpp,C++,Programming Languages,High-performance systems programming. Master competitive programming and game engine development.,STL,Algorithms
+cpp,C++,Programming Languages,High-performance systems programming. Master competitive programming and game engine development.,Memory,Pointers & References
+cpp,C++,Programming Languages,High-performance systems programming. Master competitive programming and game engine development.,Memory,Dynamic Memory Allocation
+cpp,C++,Programming Languages,High-performance systems programming. Master competitive programming and game engine development.,Memory,Templates
+dbms,DBMS,Computer Science,"Database Management Systems. Master SQL, NoSQL, and the theory of organized data storage.",Introduction,DBMS vs File System
+dbms,DBMS,Computer Science,"Database Management Systems. Master SQL, NoSQL, and the theory of organized data storage.",Introduction,Architecture
+dbms,DBMS,Computer Science,"Database Management Systems. Master SQL, NoSQL, and the theory of organized data storage.",Introduction,Data Independence
+dbms,DBMS,Computer Science,"Database Management Systems. Master SQL, NoSQL, and the theory of organized data storage.",SQL,DDL Commands
+dbms,DBMS,Computer Science,"Database Management Systems. Master SQL, NoSQL, and the theory of organized data storage.",SQL,DML Commands
+dbms,DBMS,Computer Science,"Database Management Systems. Master SQL, NoSQL, and the theory of organized data storage.",SQL,Joins
+dbms,DBMS,Computer Science,"Database Management Systems. Master SQL, NoSQL, and the theory of organized data storage.",SQL,Subqueries
+dbms,DBMS,Computer Science,"Database Management Systems. Master SQL, NoSQL, and the theory of organized data storage.",SQL,Indexes
+dbms,DBMS,Computer Science,"Database Management Systems. Master SQL, NoSQL, and the theory of organized data storage.",Theory,ER Models
+dbms,DBMS,Computer Science,"Database Management Systems. Master SQL, NoSQL, and the theory of organized data storage.",Theory,Normalization (1NF-BCNF)
+dbms,DBMS,Computer Science,"Database Management Systems. Master SQL, NoSQL, and the theory of organized data storage.",Theory,ACID Properties
+dbms,DBMS,Computer Science,"Database Management Systems. Master SQL, NoSQL, and the theory of organized data storage.",Advanced,Transactions
+dbms,DBMS,Computer Science,"Database Management Systems. Master SQL, NoSQL, and the theory of organized data storage.",Advanced,Concurency Control
+dbms,DBMS,Computer Science,"Database Management Systems. Master SQL, NoSQL, and the theory of organized data storage.",Advanced,NoSQL Basics
+dsa,DSA,Computer Science,Data Structures & Algorithms. The core of problem solving. Essential for top-tier tech interviews.,Complexity,Big O Notation
+dsa,DSA,Computer Science,Data Structures & Algorithms. The core of problem solving. Essential for top-tier tech interviews.,Complexity,Time & Space Complexity
+dsa,DSA,Computer Science,Data Structures & Algorithms. The core of problem solving. Essential for top-tier tech interviews.,Complexity,Recursion
+dsa,DSA,Computer Science,Data Structures & Algorithms. The core of problem solving. Essential for top-tier tech interviews.,Linear DSA,Linked Lists
+dsa,DSA,Computer Science,Data Structures & Algorithms. The core of problem solving. Essential for top-tier tech interviews.,Linear DSA,Stacks
+dsa,DSA,Computer Science,Data Structures & Algorithms. The core of problem solving. Essential for top-tier tech interviews.,Linear DSA,Queues
+dsa,DSA,Computer Science,Data Structures & Algorithms. The core of problem solving. Essential for top-tier tech interviews.,Linear DSA,Arrays
+dsa,DSA,Computer Science,Data Structures & Algorithms. The core of problem solving. Essential for top-tier tech interviews.,Non-Linear,Binary Trees
+dsa,DSA,Computer Science,Data Structures & Algorithms. The core of problem solving. Essential for top-tier tech interviews.,Non-Linear,Heaps
+dsa,DSA,Computer Science,Data Structures & Algorithms. The core of problem solving. Essential for top-tier tech interviews.,Non-Linear,Hashing
+dsa,DSA,Computer Science,Data Structures & Algorithms. The core of problem solving. Essential for top-tier tech interviews.,Non-Linear,BST
+dsa,DSA,Computer Science,Data Structures & Algorithms. The core of problem solving. Essential for top-tier tech interviews.,Algorithms,"Sorting (Quick, Merge)"
+dsa,DSA,Computer Science,Data Structures & Algorithms. The core of problem solving. Essential for top-tier tech interviews.,Algorithms,Searching (Binary)
+dsa,DSA,Computer Science,Data Structures & Algorithms. The core of problem solving. Essential for top-tier tech interviews.,Algorithms,"Graph Algorithms (BFS, DFS)"
+dsa,DSA,Computer Science,Data Structures & Algorithms. The core of problem solving. Essential for top-tier tech interviews.,Algorithms,Dynamic Programming
+html,HTML,Web Development,The skeleton of the web. Learn semantic tagging and building accessible web structures.,Basics,Document Structure
+html,HTML,Web Development,The skeleton of the web. Learn semantic tagging and building accessible web structures.,Basics,Heading & Paragraphs
+html,HTML,Web Development,The skeleton of the web. Learn semantic tagging and building accessible web structures.,Basics,Links & Images
+html,HTML,Web Development,The skeleton of the web. Learn semantic tagging and building accessible web structures.,Formatting,Lists
+html,HTML,Web Development,The skeleton of the web. Learn semantic tagging and building accessible web structures.,Formatting,Tables
+html,HTML,Web Development,The skeleton of the web. Learn semantic tagging and building accessible web structures.,Formatting,Forms & Inputs
+html,HTML,Web Development,The skeleton of the web. Learn semantic tagging and building accessible web structures.,Media,Audio & Video
+html,HTML,Web Development,The skeleton of the web. Learn semantic tagging and building accessible web structures.,Media,iFrames
+html,HTML,Web Development,The skeleton of the web. Learn semantic tagging and building accessible web structures.,Media,SVG Integration
+html,HTML,Web Development,The skeleton of the web. Learn semantic tagging and building accessible web structures.,Semantic HTML,"Header, Footer, Nav"
+html,HTML,Web Development,The skeleton of the web. Learn semantic tagging and building accessible web structures.,Semantic HTML,Section & Aside
+html,HTML,Web Development,The skeleton of the web. Learn semantic tagging and building accessible web structures.,Semantic HTML,Accessibility Best Practices
+javascript,JavaScript,Web Development,Make the web interactive. Master the world's most versatile language for frontend and backend.,Foundations,Syntax
+javascript,JavaScript,Web Development,Make the web interactive. Master the world's most versatile language for frontend and backend.,Foundations,Functions
+javascript,JavaScript,Web Development,Make the web interactive. Master the world's most versatile language for frontend and backend.,Foundations,Scope & Hoisting
+javascript,JavaScript,Web Development,Make the web interactive. Master the world's most versatile language for frontend and backend.,DOM,Selecting Elements
+javascript,JavaScript,Web Development,Make the web interactive. Master the world's most versatile language for frontend and backend.,DOM,Event Listeners
+javascript,JavaScript,Web Development,Make the web interactive. Master the world's most versatile language for frontend and backend.,DOM,Manipulating Styles
+javascript,JavaScript,Web Development,Make the web interactive. Master the world's most versatile language for frontend and backend.,Modern JS (ES6),Arrow Functions
+javascript,JavaScript,Web Development,Make the web interactive. Master the world's most versatile language for frontend and backend.,Modern JS (ES6),Destructuring
+javascript,JavaScript,Web Development,Make the web interactive. Master the world's most versatile language for frontend and backend.,Modern JS (ES6),Spread/Rest Operator
+javascript,JavaScript,Web Development,Make the web interactive. Master the world's most versatile language for frontend and backend.,Modern JS (ES6),Modules
+javascript,JavaScript,Web Development,Make the web interactive. Master the world's most versatile language for frontend and backend.,Async JS,Promises
+javascript,JavaScript,Web Development,Make the web interactive. Master the world's most versatile language for frontend and backend.,Async JS,Async/Await
+javascript,JavaScript,Web Development,Make the web interactive. Master the world's most versatile language for frontend and backend.,Async JS,Fetch API
+javascript,JavaScript,Web Development,Make the web interactive. Master the world's most versatile language for frontend and backend.,Async JS,Error Handling

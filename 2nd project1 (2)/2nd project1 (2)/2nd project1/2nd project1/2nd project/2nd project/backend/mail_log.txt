@@ -1,0 +1,103 @@
+[2026-03-13 14:56:40.112395] FAILURE: To ['jagruthsriramula@gmail.com'] - Error: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-35a02e18f0asm7950475a91.1 - gsmtp')
+[2026-03-13 14:56:48.707185] FAILURE: To ['jagruthsriramula@gmail.com'] - Error: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2aece7ede79sm22296465ad.53 - gsmtp')
+[2026-03-13 14:56:57.231211] FAILURE: To ['jagruthsriramula@gmail.com'] - Error: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-82a0727c1d2sm5500911b3a.25 - gsmtp')
+[2026-03-13 14:59:04.081391] FAILURE: To ['jagruthsriramula@gmail.com'] - Error: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2aece5c1465sm23231025ad.21 - gsmtp')
+[2026-03-13 15:09:27.303125] FAILURE: To ['jagruthsriramula@gmail.com'] - Error: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2aece809586sm15363205ad.63 - gsmtp')
+[2026-03-13 15:13:54.515133] FAILURE: To ['demo@smartrevise.ai'] - Error: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-82a07242ecesm5015285b3a.2 - gsmtp')
+[2026-03-13 15:19:08.517703] FAILURE: To ['demo@smartrevise.ai'] - Error: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2aece8233e1sm17576715ad.71 - gsmtp')
+[2026-03-31 22:13:02.500135] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-03-31 22:15:05.583320] SUCCESS: To ['kandiparesh266@gmail.com'] - Subject: Welcome to SmartRevise AI!
+[2026-03-31 22:15:31.812121] SUCCESS: To ['kandiparesh266@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-03-31 22:15:54.979757] SUCCESS: To ['kandiparesh266@gmail.com'] - Subject: SmartRevise AI - Password Reset Request
+[2026-03-31 22:16:44.319745] SUCCESS: To ['kandiparesh266@gmail.com'] - Subject: SmartRevise AI - Password Reset Request
+[2026-03-31 22:18:34.990470] SUCCESS: To ['kandiparesh266@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-03-31 22:35:52.094335] SUCCESS: To ['kandiparesh266@gmail.com'] - Subject: SmartRevise AI - Password Reset Request
+[2026-03-31 22:38:49.394488] SUCCESS: To ['kandiparesh266@gmail.com'] - Subject: SmartRevise AI - Password Reset Request
+[2026-03-31 22:39:39.447596] SUCCESS: To ['kandiparesh266@gmail.com'] - Subject: SmartRevise AI - Password Reset Request
+[2026-03-31 22:50:27.492602] SUCCESS: To ['pareshsanka@gmail.com'] - Subject: SmartRevise AI - Password Reset Request
+[2026-03-31 22:50:45.418762] SUCCESS: To ['pareshsanka@gmail.com'] - Subject: SmartRevise AI - Password Reset Request
+[2026-03-31 22:51:43.164128] SUCCESS: To ['pareshsanka@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-21 11:32:18.884467] SUCCESS: To ['pareshsanka@gmail.com'] - Subject: SmartRevise AI - Password Reset Request
+[2026-04-21 11:32:57.811457] SUCCESS: To ['pareshsanka@gmail.com'] - Subject: SmartRevise AI - Password Reset Request
+[2026-04-21 11:34:25.633980] SUCCESS: To ['pareshsanka@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-21 11:36:36.275930] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-21 12:50:17.948557] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-21 12:55:55.326872] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise Reminder: Java Programming
+[2026-04-21 12:55:59.427592] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise Reminder: Java Programming
+[2026-04-21 13:10:33.387231] SUCCESS: To ['pareshsanka@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-21 13:25:07.536695] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-21 13:28:06.919686] SUCCESS: To ['pareshsanka@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-21 13:29:26.979113] SUCCESS: To ['pareshsanka@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-21 13:32:31.284944] SUCCESS: To ['pavan@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-21 20:21:35.178220] SUCCESS: To ['pavan@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-21 20:30:43.829925] SUCCESS: To ['pareshsanka@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-21 20:32:49.166628] SUCCESS: To ['pareshsanka@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-21 20:43:41.446466] SUCCESS: To ['pareshsanka@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-21 20:45:33.264570] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-24 10:43:29.449841] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-24 10:45:45.324717] SUCCESS: To ['pareshsanka@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-24 10:46:09.021607] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-24 10:52:07.071818] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise Reminder: Java Programming
+[2026-04-24 11:11:07.956643] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise Reminder: Java Programming
+[2026-04-24 11:11:11.400217] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise Reminder: Java Programming
+[2026-04-24 12:30:05.193565] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-24 12:31:46.047617] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-24 14:43:42.371661] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-24 21:34:19.875096] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-24 22:18:21.741243] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-24 22:20:06.749026] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise Reminder: Python AI
+[2026-04-24 22:21:03.372292] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise Reminder: Python AI
+[2026-04-24 23:24:45.522934] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-25 00:00:39.563672] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-25 00:09:36.260349] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-25 10:15:39.057185] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-25 10:40:24.952593] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-25 10:53:44.473490] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-25 11:10:40.571479] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-25 11:36:26.672786] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-25 11:36:41.889607] SUCCESS: To ['pareshsanka@gmail.com'] - Subject: SmartRevise AI - Password Reset Request
+[2026-04-25 11:37:51.047952] SUCCESS: To ['pareshsanka@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-25 11:38:25.453718] SUCCESS: To ['pareshsanka@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-25 11:38:34.976523] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-25 14:35:37.405785] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-25 14:55:16.312322] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-25 15:07:38.276577] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-25 15:12:51.817851] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-25 15:15:53.778240] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-26 15:06:04.801984] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-04-26 15:08:54.015717] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-02 12:58:47.363347] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-02 12:59:33.659585] SUCCESS: To ['pareshsanka@gmail.com'] - Subject: SmartRevise AI - Password Reset Request
+[2026-05-02 13:01:03.067462] SUCCESS: To ['sangamvijaykumar22@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-02 15:08:42.744091] SUCCESS: To ['sangamvijaykumar22@gmail.com'] - Subject: SmartRevise AI - Password Reset Request
+[2026-05-02 15:08:54.100930] SUCCESS: To ['sangamvijaykumar22@gmail.com'] - Subject: SmartRevise AI - Password Reset Request
+[2026-05-02 15:10:20.306913] SUCCESS: To ['sangamvijaykumar22@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-02 15:11:04.088247] SUCCESS: To ['admin@smartrevise.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-02 15:11:28.549028] SUCCESS: To ['sangamvijaykumar22@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-02 15:11:48.529947] SUCCESS: To ['admin@smartrevise.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-02 15:30:16.632208] SUCCESS: To ['admin@smartrevise.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-02 15:40:22.240428] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-02 15:40:53.490644] SUCCESS: To ['admin@smartrevise.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-02 15:41:59.072037] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-02 15:43:31.485506] SUCCESS: To ['pareshsanka@gmail.com'] - Subject: SmartRevise AI - Password Reset Request
+[2026-05-02 15:44:39.552640] SUCCESS: To ['pareshsanka@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-02 15:51:45.411634] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-02 15:57:17.639598] SUCCESS: To ['sangamvijaykumar22@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-02 15:57:59.026072] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-02 16:03:07.262088] SUCCESS: To ['admin@smartrevise.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-02 16:20:23.901932] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-02 16:23:38.735990] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-08 12:21:59.548083] SUCCESS: To ['admin@smartrevise.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-08 12:23:32.062827] SUCCESS: To ['sangamvijaykumar22@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-08 12:32:33.456656] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-08 12:40:15.065669] SUCCESS: To ['admin@smartrevise.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-05-08 12:42:40.148778] SUCCESS: To ['sangamvijaykumar22@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-06-05 20:17:48.770332] SUCCESS: To ['sangamvijaykumar22@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-06-05 20:21:59.527977] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-06-05 20:32:10.102571] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-06-05 20:33:13.341629] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-06-05 20:39:04.328555] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-06-05 20:53:04.577231] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise Reminder: Java Programming
+[2026-06-05 20:53:04.859710] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise Reminder: Java Programming
+[2026-06-05 20:53:56.291650] SUCCESS: To ['admin@smartrevise.com'] - Subject: SmartRevise AI - New Login Detected
+[2026-06-05 22:14:22.760395] SUCCESS: To ['jithamanyu@gmail.com'] - Subject: SmartRevise AI - New Login Detected

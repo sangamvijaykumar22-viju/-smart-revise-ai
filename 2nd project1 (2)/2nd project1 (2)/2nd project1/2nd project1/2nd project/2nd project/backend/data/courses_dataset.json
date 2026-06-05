@@ -1,0 +1,202 @@
+[
+    {
+        "id": "c_programming",
+        "name": "C Programming",
+        "category": "Programming Languages",
+        "description": "Master the foundation of modern computing. Learn memory management, pointers, and low-level optimization.",
+        "icon": "bi-cpu",
+        "modules": [
+            {
+                "name": "Introduction",
+                "topics": ["History of C", "Environment Setup", "Structure of C Program"]
+            },
+            {
+                "name": "Basics",
+                "topics": ["Variables & Constants", "Data Types", "Operators & Expressions"]
+            },
+            {
+                "name": "Control Flow",
+                "topics": ["if-else", "switch-case", "Looping (for, while, do-while)"]
+            },
+            {
+                "name": "Advanced Concepts",
+                "topics": ["Functions", "Arrays & Strings", "Pointers", "Structures & Unions", "File I/O"]
+            }
+        ]
+    },
+    {
+        "id": "python",
+        "name": "Python",
+        "category": "Programming Languages",
+        "description": "The most popular language for AI, Data Science, and Web Development. Clean, readable, and powerful.",
+        "icon": "bi-code-square",
+        "modules": [
+            {
+                "name": "Basics",
+                "topics": ["Installation & Setup", "Variables & Types", "Basic Math"]
+            },
+            {
+                "name": "Data Structures",
+                "topics": ["Lists", "Dictionaries", "Tuples", "Sets"]
+            },
+            {
+                "name": "Logic",
+                "topics": ["Conditions", "Loops", "List Comprehensions"]
+            },
+            {
+                "name": "Advanced",
+                "topics": ["Functions & Lambdas", "Modules & Packages", "Object Oriented Programming", "File Handling"]
+            }
+        ]
+    },
+    {
+        "id": "java",
+        "name": "Java",
+        "category": "Programming Languages",
+        "description": "Enterprise-grade development. Learn the language that powers banking, Android, and massive scale systems.",
+        "icon": "bi-cup-hot",
+        "modules": [
+            {
+                "name": "Core Java",
+                "topics": ["JVM Architecture", "JDK vs JRE", "Data Types", "OOPs Principles"]
+            },
+            {
+                "name": "OOPs Deep Dive",
+                "topics": ["Inheritance", "Polymorphism", "Abstraction", "Encapsulation", "Interfaces"]
+            },
+            {
+                "name": "Collections",
+                "topics": ["ArrayList", "HashMap", "HashSet", "Iterators"]
+            },
+            {
+                "name": "Advanced",
+                "topics": ["Exception Handling", "Multithreading", "JDBC", "Streams API"]
+            }
+        ]
+    },
+    {
+        "id": "cpp",
+        "name": "C++",
+        "category": "Programming Languages",
+        "description": "High-performance systems programming. Master competitive programming and game engine development.",
+        "icon": "bi-gear-wide-connected",
+        "modules": [
+            {
+                "name": "Foundations",
+                "topics": ["C vs C++", "Standard I/O", "Namespace"]
+            },
+            {
+                "name": "OOP in C++",
+                "topics": ["Classes & Objects", "Constructors & Destructors", "Friend Functions"]
+            },
+            {
+                "name": "STL",
+                "topics": ["Vectors", "Lists", "Maps", "Queues & Stacks", "Algorithms"]
+            },
+            {
+                "name": "Memory",
+                "topics": ["Pointers & References", "Dynamic Memory Allocation", "Templates"]
+            }
+        ]
+    },
+    {
+        "id": "dbms",
+        "name": "DBMS",
+        "category": "Computer Science",
+        "description": "Database Management Systems. Master SQL, NoSQL, and the theory of organized data storage.",
+        "icon": "bi-database",
+        "modules": [
+            {
+                "name": "Introduction",
+                "topics": ["DBMS vs File System", "Architecture", "Data Independence"]
+            },
+            {
+                "name": "SQL",
+                "topics": ["DDL Commands", "DML Commands", "Joins", "Subqueries", "Indexes"]
+            },
+            {
+                "name": "Theory",
+                "topics": ["ER Models", "Normalization (1NF-BCNF)", "ACID Properties"]
+            },
+            {
+                "name": "Advanced",
+                "topics": ["Transactions", "Concurency Control", "NoSQL Basics"]
+            }
+        ]
+    },
+    {
+        "id": "dsa",
+        "name": "DSA",
+        "category": "Computer Science",
+        "description": "Data Structures & Algorithms. The core of problem solving. Essential for top-tier tech interviews.",
+        "icon": "bi-diagram-3",
+        "modules": [
+            {
+                "name": "Complexity",
+                "topics": ["Big O Notation", "Time & Space Complexity", "Recursion"]
+            },
+            {
+                "name": "Linear DSA",
+                "topics": ["Linked Lists", "Stacks", "Queues", "Arrays"]
+            },
+            {
+                "name": "Non-Linear",
+                "topics": ["Binary Trees", "Heaps", "Hashing", "BST"]
+            },
+            {
+                "name": "Algorithms",
+                "topics": ["Sorting (Quick, Merge)", "Searching (Binary)", "Graph Algorithms (BFS, DFS)", "Dynamic Programming"]
+            }
+        ]
+    },
+    {
+        "id": "html",
+        "name": "HTML",
+        "category": "Web Development",
+        "description": "The skeleton of the web. Learn semantic tagging and building accessible web structures.",
+        "icon": "bi-filetype-html",
+        "modules": [
+            {
+                "name": "Basics",
+                "topics": ["Document Structure", "Heading & Paragraphs", "Links & Images"]
+            },
+            {
+                "name": "Formatting",
+                "topics": ["Lists", "Tables", "Forms & Inputs"]
+            },
+            {
+                "name": "Media",
+                "topics": ["Audio & Video", "iFrames", "SVG Integration"]
+            },
+            {
+                "name": "Semantic HTML",
+                "topics": ["Header, Footer, Nav", "Section & Aside", "Accessibility Best Practices"]
+            }
+        ]
+    },
+    {
+        "id": "javascript",
+        "name": "JavaScript",
+        "category": "Web Development",
+        "description": "Make the web interactive. Master the world's most versatile language for frontend and backend.",
+        "icon": "bi-braces",
+        "modules": [
+            {
+                "name": "Foundations",
+                "topics": ["Syntax", "Functions", "Scope & Hoisting"]
+            },
+            {
+                "name": "DOM",
+                "topics": ["Selecting Elements", "Event Listeners", "Manipulating Styles"]
+            },
+            {
+                "name": "Modern JS (ES6)",
+                "topics": ["Arrow Functions", "Destructuring", "Spread/Rest Operator", "Modules"]
+            },
+            {
+                "name": "Async JS",
+                "topics": ["Promises", "Async/Await", "Fetch API", "Error Handling"]
+            }
+        ]
+    }
+]

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Analytics | SmartRevise AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="bg-light">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm py-2">
+        <div class="container-fluid px-lg-5">
+            <a class="navbar-brand d-flex align-items-center me-4" href="index.html">
+                <i class="bi bi-robot text-primary me-2 h3 mb-0"></i>
+                <span class="text-dark fw-800 fs-4">SmartRevise</span><span class="text-primary fw-800 fs-4">AI</span>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto align-items-center">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link px-3 dropdown-toggle text-dark fw-600" href="#" role="button"
+                            data-bs-toggle="dropdown">Courses</a>
+                        <ul class="dropdown-menu border-0 shadow-sm">
+                            <li><a class="dropdown-item" href="#">C</a></li>
+                            <li><a class="dropdown-item" href="#">Python</a></li>
+                            <li><a class="dropdown-item" href="#">Java</a></li>
+                            <li><a class="dropdown-item" href="#">C++</a></li>
+                            <li><a class="dropdown-item" href="#">DBMS</a></li>
+                            <li><a class="dropdown-item" href="#">DSA</a></li>
+                            <li><a class="dropdown-item" href="#">HTML</a></li>
+                            <li><a class="dropdown-item" href="#">JavaScript</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link px-3 dropdown-toggle text-dark fw-600" href="#" role="button"
+                            data-bs-toggle="dropdown">Practice</a>
+                        <ul class="dropdown-menu border-0 shadow-sm">
+                            <li><a class="dropdown-item" href="#" onclick="quickStartRevision('Arrays')">Arrays</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="quickStartRevision('HashMap')">HashMap</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="quickStartRevision('LinkedList')">LinkedList</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="quickStartRevision('Basic Programming Language Topics')">Basic Programming Language Topics</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="quickStartRevision('OOPs')">OOPs</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="quickStartRevision('Advanced Language Topics')">Advanced Language Topics</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="quickStartRevision('Language Specific Topics & Modern Programming Topics')">Language Specific Topics & Modern Programming Topics</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 fw-600 text-dark" href="dashboard.html">
+                            <i class="bi bi-speedometer2 me-1"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 fw-600 text-dark" href="planner.html">Planner</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 fw-600 text-dark" href="saved-revisions.html">Saved</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 fw-600 text-dark active fw-bold" href="analytics.html">Analytics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 fw-600 text-dark" href="upload.html">Upload PDF</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn btn-link text-dark p-0" id="theme-toggle">
+                        <i class="bi bi-moon fs-5"></i>
+                    </button>
+                    <button class="btn btn-link text-dark p-0 position-relative" title="Notifications">
+                        <i class="bi bi-bell fs-5"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-danger p-1 notification-badge d-none">
+                            <span class="visually-hidden">unread notifications</span>
+                        </span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container" style="margin-top: 100px; margin-bottom: 60px;">
+        <div class="mb-5">
+            <h2 class="fw-bold">Learning <span class="text-primary">Analytics</span></h2>
+            <p class="text-secondary" id="analytics-subtitle">Deep dive into your progress and subject mastery.</p>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <!-- Mastery Radar -->
+            <div class="col-lg-6">
+                <div class="card-premium p-4 h-100 border-0 bg-white shadow-sm">
+                    <h5 class="fw-bold mb-4">Subject Mastery</h5>
+                    <div style="height: 300px;">
+                        <canvas id="masteryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- Weekly Activity -->
+            <div class="col-lg-6">
+                <div class="card-premium p-4 h-100 border-0 bg-white shadow-sm">
+                    <h5 class="fw-bold mb-4">Weekly Revision Hours</h5>
+                    <div style="height: 300px;">
+                        <canvas id="activityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Accuracy Trends -->
+            <div class="col-lg-8">
+                <div class="card-premium p-4 border-0 bg-white shadow-sm">
+                    <h5 class="fw-bold mb-4">Quiz Performance Trend</h5>
+                    <div style="height: 300px;">
+                        <canvas id="trendChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- Time Distribution -->
+            <div class="col-lg-4">
+                <div class="card-premium p-4 h-100 border-0 bg-white shadow-sm text-center">
+                    <h5 class="fw-bold mb-4 text-start">Time Distribution</h5>
+                    <div style="height: 220px;" class="mb-4">
+                        <canvas id="distributionChart"></canvas>
+                    </div>
+                    <div class="text-start small">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span><i class="bi bi-circle-fill text-primary me-2"></i> Notes Reading</span>
+                            <span class="fw-bold">45%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span><i class="bi bi-circle-fill text-info me-2"></i> MCQ Practice</span>
+                            <span class="fw-bold">30%</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span><i class="bi bi-circle-fill text-success me-2"></i> Coding Exercises</span>
+                            <span class="fw-bold">25%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        let charts = {};
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        const userId = user.id;
+        const token = localStorage.getItem('token');
+
+        const getThemeColors = () => {
+            const isDark = document.body.classList.contains('dark-mode');
+            return {
+                textColor: isDark ? '#f8fafc' : '#1e293b',
+                gridColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
+                primaryColor: isDark ? '#4ade80' : '#2563eb'
+            };
+        };
+
+        const fetchData = async () => {
+            if (!userId || !token) return null;
+            try {
+                const [revisionsResp, plannerResp] = await Promise.all([
+                    fetch(`http://127.0.0.1:5050/api/revision/user/${userId}`, {
+                        headers: { "Authorization": `Bearer ${token}` }
+                    }),
+                    fetch(`http://127.0.0.1:5050/api/planner/${userId}`, {
+                        headers: { "Authorization": `Bearer ${token}` }
+                    })
+                ]);
+                const revisions = revisionsResp.ok ? await revisionsResp.json() : [];
+                const planner = plannerResp.ok ? await plannerResp.json() : [];
+                return { revisions, planner };
+            } catch (e) {
+                console.error("Fetch error:", e);
+                return { revisions: [], planner: [] };
+            }
+        };
+
+        const initCharts = async () => {
+            const colors = getThemeColors();
+            const data = await fetchData();
+            if (!data) return;
+            const { revisions, planner } = data;
+            
+            // Logic: Sample/Demo data ONLY for 'paresh' account identity
+            const profileName = (user.username || "").toLowerCase();
+            const profileEmail = (user.email || "").toLowerCase();
+            const isParesh = profileName.includes('paresh') || profileEmail.includes('paresh');
+            
+            const useSample = isParesh && revisions.length === 0 && planner.length === 0;
+
+            // 1. Mastery Radar
+            const languages = ['Python', 'Java', 'React', 'Data Structures', 'Algorithms', 'SQL'];
+            let masteryData;
+            if (useSample) {
+                masteryData = [85, 75, 90, 70, 60, 80];
+            } else {
+                masteryData = languages.map(lang => {
+                    // Combine Quiz Accuracy with Planner Completion
+                    const langRevs = revisions.filter(r => r.language === lang);
+                    const langTasks = planner.filter(t => (t.title || "").includes(lang) && t.completed);
+                    
+                    if (langRevs.length === 0 && langTasks.length === 0) return 10; // Base level
+                    
+                    const avgAcc = langRevs.length > 0 
+                        ? langRevs.reduce((acc, r) => acc + parseInt(r.accuracy || 0), 0) / langRevs.length 
+                        : 50; // Default accuracy if no revisions but tasks completed
+                    
+                    // Boost mastery based on number of tasks completed (max 20% boost)
+                    const taskBoost = Math.min(langTasks.length * 5, 20);
+                    return Math.min(Math.round(avgAcc + taskBoost), 100);
+                });
+            }
+
+            const masteryCtx = document.getElementById('masteryChart').getContext('2d');
+            charts.mastery = new Chart(masteryCtx, {
+                type: 'radar',
+                data: {
+                    labels: languages,
+                    datasets: [{
+                        label: 'Subject Mastery %',
+                        data: masteryData,
+                        backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                        borderColor: colors.primaryColor,
+                        pointBackgroundColor: colors.primaryColor,
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: { color: colors.gridColor },
+                            angleLines: { color: colors.gridColor },
+                            pointLabels: { color: colors.textColor }
+                        }
+                    },
+                    plugins: {
+                        legend: { labels: { color: colors.textColor } }
+                    }
+                }
+            });
+
+            // 2. Weekly Activity (Revisions + Completed Planner Tasks)
+            const daysShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            let dailyActivity = [0, 0, 0, 0, 0, 0, 0];
+            
+            if (useSample) {
+                dailyActivity = [1.2, 1.5, 2.3, 0.8, 3.1, 2.5, 4.0];
+            } else {
+                // Count Revisions
+                revisions.forEach(rev => {
+                    const dayIndex = new Date(rev.created_at).getDay();
+                    dailyActivity[dayIndex] += 1;
+                });
+                // Count Completed Planner Tasks
+                planner.forEach(task => {
+                    if (task.completed && task.date) {
+                        const dayIndex = new Date(task.date).getDay();
+                        dailyActivity[dayIndex] += 1;
+                    }
+                });
+            }
+
+            const activityCtx = document.getElementById('activityChart').getContext('2d');
+            charts.activity = new Chart(activityCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Learning Sessions',
+                        data: [...dailyActivity.slice(1), dailyActivity[0]],
+                        backgroundColor: colors.primaryColor,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            suggestedMax: 5,
+                            grid: { color: colors.gridColor },
+                            ticks: { color: colors.textColor, stepSize: 1 }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: colors.textColor }
+                        }
+                    },
+                    plugins: {
+                        legend: { labels: { color: colors.textColor } }
+                    }
+                }
+            });
+
+            // 3. Trend Chart (Quiz Accuracy)
+            let trendLabels, accuracyTrend;
+            if (useSample) {
+                trendLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                accuracyTrend = [45, 55, 62, 78, 85, 92];
+            } else {
+                const recentRevisions = revisions.slice(-10).sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+                trendLabels = recentRevisions.map((_, i) => `Rev ${i + 1}`);
+                accuracyTrend = recentRevisions.map(r => parseInt(r.accuracy || 0));
+            }
+
+            const trendCtx = document.getElementById('trendChart').getContext('2d');
+            charts.trend = new Chart(trendCtx, {
+                type: 'line',
+                data: {
+                    labels: trendLabels.length ? trendLabels : ['No Data'],
+                    datasets: [{
+                        label: 'Quiz Performance %',
+                        data: accuracyTrend.length ? accuracyTrend : [0],
+                        borderColor: colors.primaryColor,
+                        tension: 0.4,
+                        fill: true,
+                        backgroundColor: 'rgba(37, 99, 235, 0.05)'
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: { color: colors.gridColor },
+                            ticks: { color: colors.textColor }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: colors.textColor }
+                        }
+                    },
+                    plugins: {
+                        legend: { labels: { color: colors.textColor } }
+                    }
+                }
+            });
+
+            // 4. Distribution Chart (Task Focus)
+            const completedCount = planner.filter(t => t.completed).length;
+            const pendingCount = planner.filter(t => !t.completed).length;
+            
+            const distCtx = document.getElementById('distributionChart').getContext('2d');
+            charts.distribution = new Chart(distCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Completed', 'Pending'],
+                    datasets: [{
+                        data: (completedCount + pendingCount) > 0 ? [completedCount, pendingCount] : [0, 1],
+                        backgroundColor: [colors.primaryColor, '#e2e8f0'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    cutout: '70%'
+                }
+            });
+
+            // Update Statistics Text
+            const distInfo = document.querySelector('.text-start.small');
+            if (distInfo) {
+                const total = completedCount + pendingCount;
+                const completionRate = total > 0 ? Math.round((completedCount / total) * 100) : 0;
+                
+                distInfo.innerHTML = `
+                    <div class="d-flex justify-content-between mb-3 p-2 rounded-3 bg-light">
+                        <span><i class="bi bi-check-circle-fill text-success me-2"></i> Tasks Finished</span>
+                        <span class="fw-bold text-dark">${completedCount}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3 p-2 rounded-3">
+                        <span><i class="bi bi-clock-history text-primary me-2"></i> Tasks Remaining</span>
+                        <span class="fw-bold text-dark">${pendingCount}</span>
+                    </div>
+                    <div class="d-flex justify-content-between p-2 rounded-3" style="background: rgba(37, 99, 235, 0.05)">
+                        <span><i class="bi bi-lightning-charge-fill text-warning me-2"></i> Completion Rate</span>
+                        <span class="fw-bold text-primary">${completionRate}%</span>
+                    </div>
+                `;
+            }
+        };
+
+        const updateChartThemes = () => {
+            const colors = getThemeColors();
+
+            // Update Mastery
+            charts.mastery.options.scales.r.grid.color = colors.gridColor;
+            charts.mastery.options.scales.r.angleLines.color = colors.gridColor;
+            charts.mastery.options.scales.r.pointLabels.color = colors.textColor;
+            charts.mastery.options.plugins.legend.labels.color = colors.textColor;
+            charts.mastery.data.datasets[0].borderColor = colors.primaryColor;
+            charts.mastery.data.datasets[0].pointBackgroundColor = colors.primaryColor;
+            charts.mastery.update();
+
+            // Update Activity
+            charts.activity.options.scales.y.grid.color = colors.gridColor;
+            charts.activity.options.scales.y.ticks.color = colors.textColor;
+            charts.activity.options.scales.x.ticks.color = colors.textColor;
+            charts.activity.options.plugins.legend.labels.color = colors.textColor;
+            charts.activity.data.datasets[0].backgroundColor = colors.primaryColor;
+            charts.activity.update();
+
+            // Update Trend
+            charts.trend.options.scales.y.grid.color = colors.gridColor;
+            charts.trend.options.scales.y.ticks.color = colors.textColor;
+            charts.trend.options.scales.x.ticks.color = colors.textColor;
+            charts.trend.options.plugins.legend.labels.color = colors.textColor;
+            charts.trend.data.datasets[0].borderColor = colors.primaryColor;
+            charts.trend.update();
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initCharts();
+
+            // Listen for theme toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    // Small delay to let js/main.js update the body class first
+                    setTimeout(updateChartThemes, 50);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

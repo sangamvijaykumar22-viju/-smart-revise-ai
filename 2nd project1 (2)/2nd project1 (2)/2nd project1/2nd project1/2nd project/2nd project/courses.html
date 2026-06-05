@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details | SmartRevise AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .course-hero {
+            padding: 100px 0 60px;
+            background: linear-gradient(135deg, var(--dark) 0%, #1e293b 100%);
+            color: white;
+            border-radius: 0 0 50px 50px;
+        }
+
+        .module-card {
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+            background: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+        }
+
+        .module-card:hover {
+            transform: translateX(10px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .module-card.active {
+            border-left: 5px solid var(--primary);
+            background-color: rgba(0, 200, 83, 0.02);
+        }
+
+        .course-sidebar {
+            position: sticky;
+            top: 100px;
+        }
+
+        .topic-list-item {
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s;
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .topic-list-item:hover {
+            background-color: #f8fafc;
+            transform: scale(1.02);
+        }
+
+        body.dark-mode .module-card,
+        body.dark-mode .topic-list-item {
+            background-color: #1e293b !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .study-preview-card {
+            border-radius: 24px;
+            overflow: hidden;
+            border: none;
+            box-shadow: var(--card-shadow);
+        }
+
+        .badge-step {
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            color: white;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar (Simplified/Reuse) -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm py-2">
+        <div class="container-fluid px-lg-5">
+            <a class="navbar-brand d-flex align-items-center me-4" href="index.html">
+                <i class="bi bi-robot text-primary me-2 h3 mb-0"></i>
+                <span class="text-dark fw-800 fs-4">SmartRevise</span><span class="text-primary fw-800 fs-4">AI</span>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link px-3 fw-600 text-dark" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link px-3 fw-600 text-dark" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link px-3 fw-600 text-dark" href="planner.html">Planner</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn btn-link text-dark p-0" id="theme-toggle">
+                        <i class="bi bi-moon fs-5" id="theme-icon"></i>
+                    </button>
+                    <button class="btn btn-link text-dark p-0 position-relative" title="Notifications">
+                        <i class="bi bi-bell fs-5"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-danger p-1 notification-badge d-none">
+                            <span class="visually-hidden">unread notifications</span>
+                        </span>
+                    </button>
+                    <div id="nav-user-profile"></div>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Course Hero -->
+    <header class="course-hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-3">
+                            <li class="breadcrumb-item"><a href="index.html" class="text-white opacity-75 text-decoration-none">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#" class="text-white opacity-75 text-decoration-none">Courses</a></li>
+                            <li class="breadcrumb-item active text-white fw-bold" id="course-breadcrumb">Python</li>
+                        </ol>
+                    </nav>
+                    <h1 class="display-4 fw-800 mb-3" id="course-title">Mastering Python Programming</h1>
+                    <p class="lead opacity-75 mb-4" id="course-description">From syntax basics to professional AI-driven development. Master the most versatile language on earth.</p>
+                    <div class="d-flex gap-4">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-journal-text me-2 text-primary"></i>
+                            <span id="course-modules-count">12 Modules</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-clock me-2 text-warning"></i>
+                            <span id="course-duration">24 Hours Study</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-person-check me-2 text-info"></i>
+                            <span>All Levels</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 d-none d-lg-block text-center">
+                    <div class="bg-white bg-opacity-10 p-5 rounded-circle d-inline-block border border-white border-opacity-25" id="course-icon-bg">
+                        <i class="bi bi-code-square display-1 text-primary" id="course-icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container my-5 py-4">
+        <div class="row">
+            <!-- Sidebar: Modules -->
+            <div class="col-lg-4">
+                <div class="course-sidebar">
+                    <h4 class="fw-bold mb-4">Course Modules</h4>
+                    <div id="module-list">
+                        <!-- Modules injected via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main: Topic Details & Study -->
+            <div class="col-lg-8 ps-lg-5">
+                <div id="study-container">
+                    <div class="d-flex justify-content-between align-items-end mb-4">
+                        <div>
+                            <h5 class="text-primary fw-bold mb-2" id="module-label">MODULE 1</h5>
+                            <h2 class="fw-800" id="topic-title">Introduction to Python</h2>
+                        </div>
+                        <button class="btn btn-premium rounded-pill px-4" id="btn-study-all">
+                            <i class="bi bi-stars me-2"></i> Study Whole Module
+                        </button>
+                    </div>
+
+                    <div class="card study-preview-card bg-white border-0 shadow-sm p-4 mb-4">
+                        <h5 class="fw-bold mb-4">Key Learning Objectives</h5>
+                        <div id="topic-objectives">
+                            <!-- Objectives injected via JS -->
+                        </div>
+                    </div>
+
+                    <h5 class="fw-bold mb-3 mt-5">Core Study Topics</h5>
+                    <div id="topic-list">
+                        <!-- Topics injected via JS -->
+                    </div>
+
+                    <div class="mt-5 p-5 bg-primary bg-opacity-10 rounded-4 text-center">
+                        <h4 class="fw-bold">Ready to test your knowledge?</h4>
+                        <p class="text-secondary mb-4">Generate an instant AI Revision including Notes, MCQs, and Coding Challenges for this topic.</p>
+                        <button class="btn btn-primary btn-lg rounded-pill px-5" id="btn-generate-revision">
+                            <i class="bi bi-lightning-fill me-2"></i> Start AI Study Session
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Processing Overlay -->
+    <div id="processing-overlay" class="d-none" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+        <div class="spinner-border text-primary mb-3" style="width: 3rem; height: 3rem;" role="status"></div>
+        <h4 class="text-white fw-bold">AI is preparing your study material...</h4>
+        <p class="text-white opacity-75">Analyzing course structure and generating insights.</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/courses.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,787 @@
+/* ============================================================
+   Admin Portal Styles — SmartRevise AI
+   Premium dark-themed dashboard with glassmorphism effects
+   ============================================================ */
+
+/* ---- Admin Layout ---- */
+.admin-body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: #0b0f19;
+    color: #e2e8f0;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Sidebar ---- */
+.admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    background: linear-gradient(180deg, #0f1629 0%, #131b30 100%);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 2rem 1.25rem;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+}
+
+.admin-sidebar .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.admin-sidebar .brand i {
+    font-size: 1.6rem;
+    color: #00C853;
+}
+
+.admin-sidebar .brand span {
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.admin-sidebar .brand .accent {
+    color: #00C853;
+}
+
+.admin-sidebar .nav-section-title {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #475569;
+    margin-bottom: 0.75rem;
+    padding-left: 0.75rem;
+    font-weight: 700;
+}
+
+.admin-sidebar .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    color: #94a3b8;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.25s ease;
+    margin-bottom: 2px;
+    text-decoration: none;
+}
+
+.admin-sidebar .nav-link:hover {
+    background: rgba(0, 200, 83, 0.08);
+    color: #e2e8f0;
+    transform: translateX(4px);
+}
+
+.admin-sidebar .nav-link.active {
+    background: linear-gradient(135deg, rgba(0, 200, 83, 0.15) 0%, rgba(61, 90, 254, 0.1) 100%);
+    color: #00C853;
+    font-weight: 600;
+    box-shadow: 0 0 20px rgba(0, 200, 83, 0.05);
+}
+
+.admin-sidebar .nav-link i {
+    font-size: 1.1rem;
+    width: 22px;
+    text-align: center;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ---- Main Content ---- */
+.admin-main {
+    margin-left: 260px;
+    padding: 2rem 2.5rem;
+    min-height: 100vh;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.admin-header h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #f8fafc;
+    margin: 0;
+}
+
+.admin-header .badge-admin {
+    background: linear-gradient(135deg, #00C853, #3D5AFE);
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.admin-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ---- Stat Cards ---- */
+.stat-card {
+    background: linear-gradient(135deg, rgba(15, 22, 41, 0.8) 0%, rgba(19, 27, 48, 0.8) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(20px);
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: 16px 16px 0 0;
+}
+
+.stat-card.emerald::before {
+    background: linear-gradient(90deg, #00C853, #00E676);
+}
+
+.stat-card.indigo::before {
+    background: linear-gradient(90deg, #3D5AFE, #536DFE);
+}
+
+.stat-card.amber::before {
+    background: linear-gradient(90deg, #FFC107, #FFD54F);
+}
+
+.stat-card.rose::before {
+    background: linear-gradient(90deg, #FF5252, #FF8A80);
+}
+
+.stat-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.stat-card .stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.stat-card.emerald .stat-icon {
+    background: rgba(0, 200, 83, 0.12);
+    color: #00C853;
+}
+
+.stat-card.indigo .stat-icon {
+    background: rgba(61, 90, 254, 0.12);
+    color: #536DFE;
+}
+
+.stat-card.amber .stat-icon {
+    background: rgba(255, 193, 7, 0.12);
+    color: #FFC107;
+}
+
+.stat-card.rose .stat-icon {
+    background: rgba(255, 82, 82, 0.12);
+    color: #FF5252;
+}
+
+.stat-card .stat-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #f8fafc;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+}
+
+.stat-card .stat-label {
+    font-size: 0.8rem;
+    color: #64748b;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-card .stat-trend {
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+.stat-card .stat-trend.up {
+    color: #00E676;
+}
+
+.stat-card .stat-trend.down {
+    color: #FF5252;
+}
+
+/* ---- Glass Panels ---- */
+.glass-panel {
+    background: linear-gradient(135deg, rgba(15, 22, 41, 0.6) 0%, rgba(19, 27, 48, 0.6) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 1.5rem;
+    backdrop-filter: blur(20px);
+}
+
+.glass-panel .panel-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.glass-panel .panel-title i {
+    color: #00C853;
+}
+
+/* ---- User Table ---- */
+.admin-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.admin-table thead th {
+    background: rgba(255, 255, 255, 0.03);
+    color: #64748b;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    white-space: nowrap;
+}
+
+.admin-table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.admin-table tbody tr:hover {
+    background: rgba(0, 200, 83, 0.04);
+}
+
+.admin-table tbody td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    font-size: 0.88rem;
+    color: #cbd5e1;
+    vertical-align: middle;
+}
+
+.admin-table .user-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-table .user-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.admin-table .role-badge {
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.admin-table .role-badge.admin {
+    background: rgba(0, 200, 83, 0.12);
+    color: #00C853;
+    border: 1px solid rgba(0, 200, 83, 0.2);
+}
+
+.admin-table .role-badge.user {
+    background: rgba(61, 90, 254, 0.12);
+    color: #536DFE;
+    border: 1px solid rgba(61, 90, 254, 0.2);
+}
+
+.admin-table .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.admin-table .status-dot.active {
+    background: #00E676;
+    box-shadow: 0 0 8px rgba(0, 230, 118, 0.4);
+}
+
+.admin-table .status-dot.inactive {
+    background: #FF5252;
+    box-shadow: 0 0 8px rgba(255, 82, 82, 0.4);
+}
+
+/* ---- Action Buttons ---- */
+.btn-action {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: transparent;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-action:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #f8fafc;
+    transform: scale(1.1);
+}
+
+.btn-action.danger:hover {
+    background: rgba(255, 82, 82, 0.12);
+    color: #FF5252;
+    border-color: rgba(255, 82, 82, 0.3);
+}
+
+.btn-action.success:hover {
+    background: rgba(0, 200, 83, 0.12);
+    color: #00C853;
+    border-color: rgba(0, 200, 83, 0.3);
+}
+
+/* ---- Search Input ---- */
+.admin-search {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 0.6rem 1rem 0.6rem 2.5rem;
+    color: #e2e8f0;
+    font-size: 0.88rem;
+    width: 280px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.admin-search:focus {
+    border-color: rgba(0, 200, 83, 0.3);
+    box-shadow: 0 0 0 3px rgba(0, 200, 83, 0.08);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.admin-search::placeholder {
+    color: #475569;
+}
+
+.search-wrapper {
+    position: relative;
+}
+
+.search-wrapper i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #475569;
+    font-size: 0.9rem;
+}
+
+/* ---- Activity Feed ---- */
+.activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    transition: all 0.2s ease;
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-item:hover {
+    background: rgba(0, 200, 83, 0.03);
+    border-radius: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.activity-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.activity-icon.registration {
+    background: rgba(0, 200, 83, 0.12);
+    color: #00C853;
+}
+
+.activity-icon.login {
+    background: rgba(61, 90, 254, 0.12);
+    color: #536DFE;
+}
+
+.activity-icon.revision {
+    background: rgba(255, 193, 7, 0.12);
+    color: #FFC107;
+}
+
+.activity-text {
+    font-size: 0.85rem;
+    color: #cbd5e1;
+    line-height: 1.4;
+}
+
+.activity-time {
+    font-size: 0.72rem;
+    color: #475569;
+    margin-top: 2px;
+}
+
+/* ---- Charts Area ---- */
+.chart-container {
+    position: relative;
+    height: 280px;
+    width: 100%;
+}
+
+/* ---- Admin Buttons ---- */
+.btn-admin-primary {
+    background: linear-gradient(135deg, #00C853 0%, #3D5AFE 100%);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-admin-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 200, 83, 0.25);
+    color: #fff;
+}
+
+.btn-admin-outline {
+    background: transparent;
+    color: #94a3b8;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1.25rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-admin-outline:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #e2e8f0;
+}
+
+/* ---- Pagination ---- */
+.admin-pagination {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: center;
+    margin-top: 1.25rem;
+}
+
+.admin-pagination .page-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.admin-pagination .page-btn:hover {
+    background: rgba(0, 200, 83, 0.08);
+    border-color: rgba(0, 200, 83, 0.2);
+    color: #00C853;
+}
+
+.admin-pagination .page-btn.active {
+    background: linear-gradient(135deg, #00C853 0%, #3D5AFE 100%);
+    border-color: transparent;
+    color: #fff;
+}
+
+/* ---- Modal Overrides ---- */
+.modal-content.admin-modal {
+    background: #131b30;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    color: #e2e8f0;
+}
+
+.modal-content.admin-modal .modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 1.25rem 1.5rem;
+}
+
+.modal-content.admin-modal .modal-title {
+    font-weight: 700;
+    color: #f8fafc;
+}
+
+.modal-content.admin-modal .btn-close {
+    filter: invert(1);
+    opacity: 0.5;
+}
+
+.modal-content.admin-modal .btn-close:hover {
+    opacity: 1;
+}
+
+.modal-content.admin-modal .modal-body {
+    padding: 1.5rem;
+}
+
+.modal-content.admin-modal .modal-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 1rem 1.5rem;
+}
+
+/* ---- Notification Toast ---- */
+.admin-toast {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    min-width: 320px;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    background: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #e2e8f0;
+    font-size: 0.88rem;
+    font-weight: 500;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transform: translateX(120%);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.admin-toast.show {
+    transform: translateX(0);
+}
+
+.admin-toast.success {
+    border-left: 4px solid #00C853;
+}
+
+.admin-toast.error {
+    border-left: 4px solid #FF5252;
+}
+
+.admin-toast.info {
+    border-left: 4px solid #3D5AFE;
+}
+
+/* ---- Empty State ---- */
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #475569;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.empty-state h5 {
+    color: #64748b;
+    font-weight: 600;
+}
+
+/* ---- Loading Skeleton ---- */
+.skeleton {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.04) 25%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.04) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 8px;
+    height: 20px;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ---- Scrollbar ---- */
+.admin-body::-webkit-scrollbar,
+.admin-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.admin-body::-webkit-scrollbar-track,
+.admin-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.admin-body::-webkit-scrollbar-thumb,
+.admin-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+/* ---- Mobile Toggle ---- */
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1100;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: #131b30;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+    font-size: 1.2rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 991px) {
+    .admin-sidebar {
+        transform: translateX(-100%);
+    }
+
+    .admin-sidebar.open {
+        transform: translateX(0);
+        box-shadow: 10px 0 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .admin-main {
+        margin-left: 0;
+        padding: 1.5rem;
+        padding-top: 4rem;
+    }
+
+    .sidebar-toggle {
+        display: flex;
+    }
+
+    .admin-search {
+        width: 100%;
+    }
+
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 576px) {
+    .stat-card .stat-value {
+        font-size: 1.5rem;
+    }
+
+    .admin-header h1 {
+        font-size: 1.35rem;
+    }
+}
+
+/* ---- Animations ---- */
+@keyframes adminFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.admin-animate {
+    animation: adminFadeIn 0.5s ease-out forwards;
+}
+
+.admin-animate-delay-1 { animation-delay: 0.1s; opacity: 0; }
+.admin-animate-delay-2 { animation-delay: 0.2s; opacity: 0; }
+.admin-animate-delay-3 { animation-delay: 0.3s; opacity: 0; }
+.admin-animate-delay-4 { animation-delay: 0.4s; opacity: 0; }

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartRevise AI | Choose Your Portal</title>
+    <meta name="description" content="SmartRevise AI — Select your portal to continue. Student or Admin access.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            min-height: 100vh;
+            background: #080c18;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated background orbs */
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.25;
+            animation: float 8s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .bg-orb.orb-green  { width: 500px; height: 500px; background: #00C853; top: -150px; left: -150px; animation-delay: 0s; }
+        .bg-orb.orb-indigo { width: 400px; height: 400px; background: #3D5AFE; bottom: -100px; right: -100px; animation-delay: 3s; }
+        .bg-orb.orb-amber  { width: 300px; height: 300px; background: #FFC107; top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: 1.5s; opacity: 0.1; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-30px) scale(1.05); }
+        }
+
+        /* Grid background */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+        }
+
+        .page-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Brand */
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 0.75rem;
+            animation: fadeDown 0.6s ease-out forwards;
+        }
+        .brand i { font-size: 2.2rem; color: #00C853; }
+        .brand-name {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #f8fafc;
+            letter-spacing: -0.5px;
+        }
+        .brand-name span { color: #00C853; }
+
+        .tagline {
+            color: #64748b;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 3rem;
+            text-align: center;
+            animation: fadeDown 0.6s ease-out 0.1s forwards;
+            opacity: 0;
+        }
+
+        /* Portal Cards */
+        .portals-row {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .portal-card {
+            flex: 1;
+            min-width: 280px;
+            max-width: 400px;
+            background: linear-gradient(135deg, rgba(15, 22, 41, 0.9) 0%, rgba(19, 27, 48, 0.85) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .portal-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            border-radius: 24px 24px 0 0;
+            transition: height 0.3s ease;
+        }
+
+        .portal-card.student::before { background: linear-gradient(90deg, #00C853, #00E676); }
+        .portal-card.admin::before   { background: linear-gradient(90deg, #3D5AFE, #536DFE); }
+
+        .portal-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.03) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 24px;
+        }
+
+        .portal-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .portal-card:hover::after { opacity: 1; }
+        .portal-card.student:hover { box-shadow: 0 30px 60px rgba(0, 200, 83, 0.2); }
+        .portal-card.admin:hover   { box-shadow: 0 30px 60px rgba(61, 90, 254, 0.2); }
+
+        .portal-card:hover::before { height: 4px; }
+
+        /* Icon bubble */
+        .portal-icon {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .portal-card.student .portal-icon {
+            background: radial-gradient(circle, rgba(0, 200, 83, 0.2) 0%, rgba(0, 200, 83, 0.05) 70%);
+            border: 2px solid rgba(0, 200, 83, 0.25);
+            color: #00C853;
+            box-shadow: 0 0 30px rgba(0, 200, 83, 0.15);
+        }
+
+        .portal-card.admin .portal-icon {
+            background: radial-gradient(circle, rgba(61, 90, 254, 0.2) 0%, rgba(61, 90, 254, 0.05) 70%);
+            border: 2px solid rgba(61, 90, 254, 0.25);
+            color: #536DFE;
+            box-shadow: 0 0 30px rgba(61, 90, 254, 0.15);
+        }
+
+        .portal-card:hover .portal-icon { transform: scale(1.1) rotate(-5deg); }
+
+        /* Card text */
+        .portal-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #f8fafc;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.3px;
+        }
+
+        .portal-desc {
+            font-size: 0.9rem;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        /* Features list */
+        .portal-features {
+            list-style: none;
+            width: 100%;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .portal-features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.5rem 0;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .portal-features li:last-child { border-bottom: none; }
+
+        .portal-features li i {
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .portal-card.student .portal-features li i { color: #00C853; }
+        .portal-card.admin   .portal-features li i { color: #536DFE; }
+
+        /* CTA Button */
+        .portal-btn {
+            width: 100%;
+            padding: 0.9rem 2rem;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            letter-spacing: 0.2px;
+        }
+
+        .portal-card.student .portal-btn {
+            background: linear-gradient(135deg, #00C853, #00E676);
+            color: #0a1a0a;
+            box-shadow: 0 8px 25px rgba(0, 200, 83, 0.3);
+        }
+
+        .portal-card.admin .portal-btn {
+            background: linear-gradient(135deg, #3D5AFE, #536DFE);
+            color: #fff;
+            box-shadow: 0 8px 25px rgba(61, 90, 254, 0.3);
+        }
+
+        .portal-btn:hover { transform: translateY(-2px); }
+
+        .portal-card.student .portal-btn:hover { box-shadow: 0 12px 35px rgba(0, 200, 83, 0.45); }
+        .portal-card.admin   .portal-btn:hover { box-shadow: 0 12px 35px rgba(61, 90, 254, 0.45); }
+
+        /* Badge */
+        .portal-badge {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 4px 10px;
+            border-radius: 50px;
+        }
+
+        .portal-card.student .portal-badge {
+            background: rgba(0, 200, 83, 0.12);
+            color: #00C853;
+            border: 1px solid rgba(0, 200, 83, 0.2);
+        }
+
+        .portal-card.admin .portal-badge {
+            background: rgba(61, 90, 254, 0.12);
+            color: #536DFE;
+            border: 1px solid rgba(61, 90, 254, 0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .portal-card.student {
+            animation: fadeIn 0.6s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        .portal-card.admin {
+            animation: fadeIn 0.6s ease-out 0.35s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Footer */
+        .page-footer {
+            margin-top: 2.5rem;
+            color: #334155;
+            font-size: 0.78rem;
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            animation: fadeDown 0.6s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+
+        /* Divider line between cards */
+        .or-divider {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #334155;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            z-index: 10;
+        }
+
+        .or-divider::before,
+        .or-divider::after {
+            content: '';
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.08), transparent);
+        }
+
+        @media (max-width: 700px) {
+            .or-divider { display: none; }
+            .portals-row { flex-direction: column; align-items: center; }
+            .portal-card { max-width: 100%; }
+            .brand-name { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background Orbs -->
+    <div class="bg-orb orb-green"></div>
+    <div class="bg-orb orb-indigo"></div>
+    <div class="bg-orb orb-amber"></div>
+
+    <div class="page-wrapper">
+
+        <!-- Brand -->
+        <div class="brand">
+            <i class="bi bi-robot"></i>
+            <div class="brand-name">SmartRevise<span>AI</span></div>
+        </div>
+        <p class="tagline">AI-powered learning platform — choose your portal to continue</p>
+
+        <!-- Portal Cards -->
+        <div class="portals-row">
+
+            <!-- Student Portal -->
+            <a href="login.html" class="portal-card student" id="student-portal">
+                <span class="portal-badge">Students</span>
+                <div class="portal-icon">
+                    <i class="bi bi-mortarboard-fill"></i>
+                </div>
+                <div class="portal-title">Student Portal</div>
+                <p class="portal-desc">Access AI-powered revision notes, smart MCQs, coding practice, and your personal learning dashboard.</p>
+                <ul class="portal-features">
+                    <li><i class="bi bi-check-circle-fill"></i> AI Revision Notes & Summaries</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Smart MCQs & Coding Practice</li>
+                    <li><i class="bi bi-check-circle-fill"></i> PDF Upload & Analysis</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Progress Dashboard & Analytics</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Study Planner & Reminders</li>
+                </ul>
+                <div class="portal-btn">
+                    <i class="bi bi-box-arrow-in-right"></i> Enter Student Portal
+                </div>
+            </a>
+
+            <!-- OR Divider -->
+            <div class="or-divider">OR</div>
+
+            <!-- Admin Portal -->
+            <a href="login.html" class="portal-card admin" id="admin-portal">
+                <span class="portal-badge">Admin</span>
+                <div class="portal-icon">
+                    <i class="bi bi-shield-lock-fill"></i>
+                </div>
+                <div class="portal-title">Admin Portal</div>
+                <p class="portal-desc">Manage users, monitor platform analytics, moderate content, and oversee the entire SmartRevise ecosystem.</p>
+                <ul class="portal-features">
+                    <li><i class="bi bi-check-circle-fill"></i> User Management & Roles</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Platform-Wide Analytics</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Content Moderation</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Activity & Audit Logs</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Student Password Reset</li>
+                </ul>
+                <div class="portal-btn">
+                    <i class="bi bi-shield-check"></i> Enter Admin Portal
+                </div>
+            </a>
+
+        </div>
+
+        <div class="page-footer">
+            &copy; 2026 SmartRevise AI Inc. &nbsp;·&nbsp; All rights reserved.
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // If already logged in, redirect based on role
+        try {
+            const user = JSON.parse(localStorage.getItem('user'));
+            const token = localStorage.getItem('token');
+            if (user && token) {
+                if (user.role === 'admin') {
+                    // Optionally auto-redirect admins
+                    // window.location.href = 'admin-dashboard.html';
+                } else {
+                    // Optionally auto-redirect students
+                    // window.location.href = 'index.html';
+                }
+            }
+        } catch(e) {}
+    </script>
+</body>
+
+</html>

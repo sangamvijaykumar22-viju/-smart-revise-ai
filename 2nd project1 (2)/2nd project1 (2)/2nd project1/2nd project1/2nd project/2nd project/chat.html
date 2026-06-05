@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus AI | SmartRevise</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <!-- Fira Code font for code blocks -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Highlight.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+
+<body class="dark-mode chat-layout">
+    <!-- Sidebar -->
+    <aside class="chat-sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="text-decoration-none d-flex align-items-center">
+                <i class="bi bi-robot text-primary me-2 h4 mb-0"></i>
+                <span class="text-light fw-bold fs-5">SmartRevise</span>
+            </a>
+            <button class="btn btn-link text-light p-0 d-md-none" id="close-sidebar">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-content">
+            <button class="btn new-chat-btn" id="new-chat-btn">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-plus-lg me-2"></i>
+                    <span>New chat</span>
+                </div>
+                <i class="bi bi-pencil-square"></i>
+            </button>
+
+            <div class="recent-chats mt-4">
+                <p class="sidebar-label">Recent</p>
+                <ul class="chat-history-list" id="chat-history-list">
+                    <!-- History items will go here -->
+                </ul>
+            </div>
+        </div>
+
+    </aside>
+
+    <!-- Main Chat Area -->
+    <main class="chat-main">
+        <header class="chat-topbar">
+            <button class="btn btn-link text-light p-0 d-md-none me-3" id="open-sidebar">
+                <i class="bi bi-list fs-3"></i>
+            </button>
+            <div class="chat-title dropdown">
+                <button class="btn btn-link text-light text-decoration-none dropdown-toggle p-0 fs-5 fw-600"
+                    type="button" data-bs-toggle="dropdown">
+                    Nexus <span class="badge bg-primary ms-2 rounded-pill custom-badge">4.0</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark border-secondary">
+                    <li><a class="dropdown-item active" href="#">Nexus 4.0 <small class="text-muted d-block">Smartest
+                                and most capable</small></a></li>
+                </ul>
+            </div>
+            <div class="topbar-actions ms-auto">
+                <a href="index.html" class="btn btn-outline-secondary btn-sm me-2">Back to Home</a>
+            </div>
+        </header>
+
+        <div class="chat-messages-container" id="chat-container">
+            <!-- Welcome Screen (Visible on new chat) -->
+            <div class="welcome-screen" id="welcome-screen">
+                <div class="logo-wrapper">
+                    <i class="bi bi-robot"></i>
+                </div>
+                <h1>How can I help you today?</h1>
+
+                <div class="suggestion-grid mt-5">
+                    <button class="suggestion-card" data-prompt="Explain Time Complexity of Merge Sort">
+                        <div class="card-content">
+                            <span class="card-title">Explain Time Complexity</span>
+                            <span class="card-subtitle">of Merge Sort in detail</span>
+                        </div>
+                        <i class="bi bi-code-square text-primary"></i>
+                    </button>
+                    <button class="suggestion-card" data-prompt="Write a React component for a responsive navbar">
+                        <div class="card-content">
+                            <span class="card-title">Write a React component</span>
+                            <span class="card-subtitle">for a responsive navbar</span>
+                        </div>
+                        <i class="bi bi-filetype-jsx text-info"></i>
+                    </button>
+                    <button class="suggestion-card" data-prompt="How do closures work in JavaScript?">
+                        <div class="card-content">
+                            <span class="card-title">How do closures work</span>
+                            <span class="card-subtitle">in JavaScript?</span>
+                        </div>
+                        <i class="bi bi-braces text-warning"></i>
+                    </button>
+                    <button class="suggestion-card" data-prompt="Help me debug a segmentation fault in C++">
+                        <div class="card-content">
+                            <span class="card-title">Help me debug a</span>
+                            <span class="card-subtitle">segmentation fault in C++</span>
+                        </div>
+                        <i class="bi bi-bug text-danger"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="messages-wrapper" id="messages-wrapper"></div>
+        </div>
+
+        <div class="chat-input-wrapper">
+            <form id="chat-form" class="chat-form">
+                <div id="attachment-preview" class="attachment-preview d-none">
+                    <div class="preview-item">
+                        <i class="bi bi-file-earmark-pdf me-2"></i>
+                        <span id="file-name-display">filename.pdf</span>
+                        <button type="button" class="btn-close btn-close-white ms-2" id="remove-attachment"
+                            aria-label="Close"></button>
+                    </div>
+                </div>
+                <div class="input-box">
+                    <button type="button" class="btn icon-btn attachment-btn" title="Attach file">
+                        <i class="bi bi-paperclip"></i>
+                    </button>
+                    <textarea id="chat-input" placeholder="Message Nexus..." rows="1" autofocus></textarea>
+                    <button type="button" class="btn icon-btn stop-btn d-none" id="stop-btn" title="Stop generation">
+                        <i class="bi bi-stop-circle-fill"></i>
+                    </button>
+                    <button type="submit" class="btn icon-btn send-btn" id="send-btn" disabled>
+                        <i class="bi bi-arrow-up-circle-fill"></i>
+                    </button>
+                </div>
+                <div class="input-footer">
+                    Nexus can make mistakes. Consider verifying important information.
+                </div>
+            </form>
+            <input type="file" id="chat-file-input" accept=".pdf" style="display: none;">
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/chat.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+
+</html>
