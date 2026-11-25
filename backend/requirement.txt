@@ -1,0 +1,285 @@
+Docker single container
+
+docker pull redis
+
+docker run --name my-redis -d -p 6379:6379 redis
+
+docker ps
+docker ps -a
+
+docker exec my-redis redis-cli SET name Alice
+docker exec my-redis redis-cli GET name
+
+docker stop my-redis
+docker start my-redis
+
+mkdir C:\DockerProjects\Redis
+cd /d C:\DockerProjects\Redis
+
+docker build -t redisnew .
+
+docker run --name myredisnew -d -p 6380:6379 redisnew
+
+docker ps
+
+docker exec myredisnew redis-cli SET name Abcdef
+docker exec myredisnew redis-cli GET name
+
+docker stop myredisnew
+
+docker login
+
+docker tag redisnew YOUR_USERNAME/redis1:latest
+
+docker push YOUR_USERNAME/redis1:latest
+
+docker rm myredisnew
+
+docker rmi YOUR_USERNAME/redis1:latest
+
+docker pull YOUR_USERNAME/redis1:latest
+
+docker run --name myredis -d -p 6381:6379 YOUR_USERNAME/redis1:latest
+
+docker ps
+
+docker exec myredis redis-cli SET name Abcdef
+docker exec myredis redis-cli GET name
+
+docker ps -a
+
+docker images
+
+
+docker file code:
+
+FROM redis:latest
+CMD ["redis-server"]
+
+
+
+
+nagios 
+
+docker pull jasonrivers/nagios:latest
+
+docker run -d --name nagios -p 8081:80 jasonrivers/nagios:latest
+
+minikube
+
+nginx
+
+minikube start
+
+kubectl create deployment mynginx --image=nginx
+
+kubectl get pods
+
+kubectl expose deployment mynginx --type=NodePort --port=80
+
+kubectl get services
+
+kubectl port-forward deployment/mynginx 8080:80
+
+
+minikube app
+
+git clone https://github.com/kvrajanirajesh/mid2-hospitalmaven.git
+
+cd mid2-hospitalmaven
+
+//echo Hospital Management System > index.html
+create a docke file
+
+docker login
+
+docker build -t YOUR_DOCKERHUB_USERNAME/hospital:latest .
+
+docker push YOUR_DOCKERHUB_USERNAME/hospital:latest
+
+minikube start
+
+kubectl create deployment hospital --image=YOUR_DOCKERHUB_USERNAME/hospital:latest --replicas=2
+
+kubectl expose deployment hospital --type=NodePort --port=80 --target-port=80
+
+kubectl get deployments
+
+kubectl get pods
+
+kubectl get services
+
+minikube service hospital
+
+
+
+docker file
+
+
+FROM nginx:alpine
+
+COPY index.html /usr/share/nginx/html/index.html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
+
+
+
+aws
+
+dockerfile
+
+FROM tomcat:9.0
+COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
+
+cmds
+
+sudo apt update
+
+sudo apt-get install docker.io -y
+
+sudo apt install nano git -y
+
+git clone YOUR_GITHUB_REPOSITORY_URL
+
+cd YOUR_REPOSITORY_NAME
+
+nano Dockerfile
+
+sudo docker build -t app .
+
+sudo docker run --name helloapp -d -p 8080:8080 app
+
+sudo docker ps
+
+
+
+
+
+GitHub
+
+# 1. Git Version and Configuration
+git --version
+git config --global user.name "anoosh"
+git config --global user.email "anooshdhamshetty@gmail.com"
+git config --list
+
+# 2. Initialize Repository
+cd "YOUR_PROJECT_FOLDER"
+git init
+
+# 3. Add Remote Repository
+git remote add origin https://github.com/USERNAME/REPOSITORY.git
+
+# 4. Add and Commit Files
+git add .
+git commit -m "Initial commit"
+
+# 5. Push to GitHub
+git push -u origin main
+
+# 6. Clone Repository
+git clone https://github.com/USERNAME/REPOSITORY.git
+cd REPOSITORY
+
+# 7. Check Remote Repository
+git remote -v
+git remote show origin
+
+# 8. Remote Management
+git remote remove origin
+git remote add origin REPOSITORY_URL
+git remote rename origin upstream
+git remote rename upstream origin
+git remote set-url origin REPOSITORY_URL
+
+# 9. Fetch and Pull
+git fetch origin
+git fetch origin main
+git pull origin main
+
+# 10. Git Status and Changes
+git status
+git add .
+git add filename
+git diff
+git show HEAD
+
+# 11. Commit Operations
+git commit -m "Commit message"
+git commit --amend -m "Corrected commit message"
+git log
+git log --oneline
+
+# 12. Reset and Revert
+git reset filename
+git reset --hard HEAD
+git restore filename
+git revert HEAD
+
+# 13. Branch Operations
+git branch
+git branch -a
+git branch -r
+git branch feature-login
+git checkout feature-login
+git checkout main
+git checkout -b feature-payment
+git branch -d feature-login
+git branch -D feature-payment
+git branch --merged
+
+# 14. Push Feature Branch
+git checkout feature-login
+git push -u origin feature-login
+
+# 15. Merge Branch
+git checkout main
+git merge feature-login
+git push origin main
+
+# 16. Rebase
+git fetch origin
+git rebase origin/main
+
+# 17. Stash Operations
+git stash
+git stash apply
+git stash pop
+git stash list
+
+# 18. Branch Recovery
+git reflog
+git checkout -b feature-ui COMMIT_HASH
+
+# 19. Delete Remote Branch References
+git remote prune origin
+
+# 20. Conflict Resolution
+git status
+git add filename
+git commit -m "Resolved merge conflict"
+git push origin main
+
+# 21. Git Ignore
+# Add these lines inside .gitignore:
+# *.log
+# node_modules/
+
+# 22. Git Blame
+git blame filename
+
+# 23. Git Patch Creation
+git format-patch -1 HEAD
+
+# 24. Apply Git Patch
+git am 0001-Updated-README.patch
+
+# 25. Push Changes
+git add .
+git commit -m "Updated project"
+git push origin main
+
