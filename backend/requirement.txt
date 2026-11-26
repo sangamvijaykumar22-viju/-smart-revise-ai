@@ -284,7 +284,7 @@ git commit -m "Updated project"
 git push origin main
 
 
-
+pipeline script -->
 pipeline {
     agent any
 
